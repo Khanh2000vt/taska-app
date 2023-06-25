@@ -1,117 +1,80 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import React from 'react';
-import type {PropsWithChildren} from 'react';
+import {GlobalService, GlobalUI} from '@components';
+import {NavigationApp, NavigationUtils} from '@navigation';
+import {persistor, store} from '@redux/store';
+import {ThemeProvider} from '@theme';
+import {initI18n, loadLocaleLanguage} from '@translations';
+import {useEffect} from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
+  Platform,
   StatusBar,
   StyleSheet,
   Text,
-  useColorScheme,
+  TextInput,
   View,
 } from 'react-native';
+import FlashMessage from 'react-native-flash-message';
+import {getStatusBarHeight} from 'react-native-iphone-x-helper';
+import {Provider} from 'react-redux';
+import {PersistGate} from 'redux-persist/integration/react';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+initI18n();
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+const App = () => {
+  useEffect(() => {
+    // Được dùng để đưa các định dạng chữ về mặc định khi vào app.
+    // Tránh chữ trong app lấy các định dạng khác ở bên thứ 3.
+    // getLocalize();
+    //@ts-ignore
+    Text.defaultProps = Text.defaultProps || {};
+    //@ts-ignore
+    Text.defaultProps.allowFontScaling = false;
+    //@ts-ignore
+    TextInput.defaultProps = TextInput.defaultProps || {};
+    //@ts-ignore
+    TextInput.defaultProps.allowFontScaling = false;
+    //@ts-ignore
+    View.defaultProps = View.defaultProps || {};
+    //@ts-ignore
+    View.defaultProps.allowFontScaling = false;
+  }, []);
 
-function Section({children, title}: SectionProps): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
-
-function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  const onBeforeLift = () => {
+    loadLocaleLanguage();
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <Provider store={store}>
+      <ThemeProvider>
+        <PersistGate
+          loading={null}
+          persistor={persistor}
+          onBeforeLift={onBeforeLift}>
+          <StatusBar
+            translucent
+            backgroundColor="transparent"
+            barStyle="dark-content"
+          />
+          <NavigationApp
+            ref={(navigatorRef: any) => {
+              NavigationUtils.setTopLevelNavigator(navigatorRef);
+            }}
+          />
+          <GlobalUI ref={GlobalService.globalUIRef} />
+          <FlashMessage
+            style={styles.messageNotification}
+            position="top"
+            floating={true}
+            hideStatusBar={false}
+          />
+        </PersistGate>
+      </ThemeProvider>
+    </Provider>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
+  messageNotification: {
+    marginTop: Platform.OS === 'android' ? getStatusBarHeight() : 0,
   },
 });
 
