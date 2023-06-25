@@ -19,7 +19,7 @@ export const GlobalUI = React.forwardRef((_, ref) => {
     return (
       <View style={[styles.container, {borderRadius: 0}]}>
         <Animated.View style={[styles.background, {opacity: opacityValue}]}>
-          <Svgs.Zap />
+          {/* <Svgs.Zap /> */}
           {/* <ActivityIndicator /> */}
         </Animated.View>
       </View>

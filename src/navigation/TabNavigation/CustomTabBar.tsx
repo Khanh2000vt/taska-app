@@ -1,8 +1,7 @@
-import {Svgs} from '@assets';
 import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
 import {dimensions, scaler, Spacing} from '@themes';
 import React, {useEffect} from 'react';
-import {Animated, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Animated, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {getBottomSpace} from 'react-native-iphone-x-helper';
 import {SvgProps} from 'react-native-svg';
 import {ITabBar} from './TabNavigator';

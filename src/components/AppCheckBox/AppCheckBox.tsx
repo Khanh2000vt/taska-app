@@ -32,7 +32,7 @@ export const AppCheckBox = ({
     <AppTouchable
       style={[styles.container, style]}
       onPress={() => onChangeValue(!checked)}>
-      {checked ? <Svgs.CheckBox /> : <Svgs.TickSquare />}
+      {/* {checked ? <Svgs.CheckBox /> : <Svgs.TickSquare />} */}
       {!!label && (
         <AppText numberOfLines={1} style={styleLabel}>
           {label}

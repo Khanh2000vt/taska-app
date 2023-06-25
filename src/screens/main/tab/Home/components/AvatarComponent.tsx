@@ -72,7 +72,7 @@ export const AvatarComponent = () => {
           right: 0,
           padding: scaler(3),
         }}>
-        <Svgs.EditSquare />
+        {/* <Svgs.EditSquare /> */}
       </AppTouchable>
       <ModalRequestPermission ref={refPermission} />
     </View>
