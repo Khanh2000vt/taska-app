@@ -1,7 +1,7 @@
 import {Svgs} from '@assets';
 import {AppText} from '@components/AppText';
 import {AppTouchable} from '@components/AppTouchable';
-import {Colors, FontSize, scaler, Spacing} from '@theme';
+import {Colors, FontSize, scaler, Spacing} from '@themes';
 import React from 'react';
 import {Text, TextInput, View} from 'react-native';
 import {AppInputFormikHook} from './AppInputFormik.hook';

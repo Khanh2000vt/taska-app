@@ -1,4 +1,4 @@
-import {useTheme} from '@theme';
+import {useTheme} from '@themes';
 import React, {useState} from 'react';
 
 export const OptionHook = () => {

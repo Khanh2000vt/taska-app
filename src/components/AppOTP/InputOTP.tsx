@@ -1,4 +1,4 @@
-import {colors} from '@theme';
+import {colors} from '@themes';
 import {FontSize, scaler} from '@utils';
 import React, {useRef} from 'react';
 import {StyleSheet, TextInput, View} from 'react-native';

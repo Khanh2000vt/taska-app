@@ -1,5 +1,5 @@
 import {Block} from '@components';
-import {Colors, scaler} from '@theme';
+import {Colors, scaler} from '@themes';
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';

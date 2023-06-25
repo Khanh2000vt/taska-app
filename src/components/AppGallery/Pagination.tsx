@@ -1,4 +1,4 @@
-import {colors} from '@theme';
+import {colors} from '@themes';
 import {scaler, Spacing} from '@utils';
 import React from 'react';
 import {Animated, Dimensions, StyleSheet} from 'react-native';

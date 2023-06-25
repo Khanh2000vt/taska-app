@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {dimensions, Spacing} from '@theme';
+import {dimensions, Spacing} from '@themes';
 
 export const styles = StyleSheet.create({
   scroll: {

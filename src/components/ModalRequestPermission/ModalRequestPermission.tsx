@@ -1,7 +1,7 @@
 import {AppButton} from '@components/AppButton';
 import {AppModal} from '@components/AppModal';
 import {AppText} from '@components/AppText';
-import {Colors, dimensions, FontSize, scaler} from '@theme';
+import {Colors, dimensions, FontSize, scaler} from '@themes';
 import React, {forwardRef, useImperativeHandle} from 'react';
 import {View} from 'react-native';
 import {ModalRequestPermissionHook} from './ModalRequestPermission.hook';

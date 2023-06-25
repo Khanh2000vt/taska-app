@@ -1,5 +1,5 @@
 import {AppSwitch, AppText, AppTouchable} from '@components';
-import {Colors, FontSize, scaler} from '@theme';
+import {Colors, FontSize, scaler} from '@themes';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {OptionHook} from '../controller';

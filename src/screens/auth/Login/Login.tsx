@@ -11,8 +11,8 @@ import {
   LineView,
   RowView,
 } from '@components';
-import {Colors, dimensions, Fonts, FontSize, scaler, Spacing} from '@theme';
-import {SignInSchema} from '@validate';
+import {Colors, dimensions, Fonts, FontSize, scaler, Spacing} from '@themes';
+import {SignInSchema} from '@validates';
 import {Formik} from 'formik';
 import React from 'react';
 import {View} from 'react-native';

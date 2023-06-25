@@ -1,4 +1,4 @@
-import {Colors, Spacing} from '@theme';
+import {Colors, Spacing} from '@themes';
 import React, {useRef, useState} from 'react';
 import {
   Keyboard,

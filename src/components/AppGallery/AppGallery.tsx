@@ -1,6 +1,6 @@
 import {AppButton} from '@components/AppButton';
 import {navigate, ROUTE_AUTH} from '@navigation';
-import {Colors, dimensions, Fonts, Spacing} from '@theme';
+import {Colors, dimensions, Fonts, Spacing} from '@themes';
 import React, {useCallback, useMemo, useRef} from 'react';
 import {
   Animated,

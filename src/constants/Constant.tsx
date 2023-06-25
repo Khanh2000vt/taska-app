@@ -1,4 +1,4 @@
-import {scaler} from '@theme';
+import {scaler} from '@themes';
 import i18next from 'i18next';
 
 import {LANGUAGE} from './enum';

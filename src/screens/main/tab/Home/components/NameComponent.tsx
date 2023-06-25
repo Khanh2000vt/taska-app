@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {AppText} from '@components';
-import {Fonts, FontSize, scaler} from '@theme';
+import {Fonts, FontSize, scaler} from '@themes';
 
 export const NameComponent = () => {
   return (
