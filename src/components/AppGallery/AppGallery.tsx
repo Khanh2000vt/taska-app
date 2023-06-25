@@ -11,13 +11,13 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {IGalleryProps} from './AppGallery.props';
+import {AppGalleryProps} from './AppGallery.props';
 import {Pagination} from './Pagination';
 import {styles} from './AppGallery.styles';
 
 const ITEM_WIDTH = dimensions.width - Spacing.width32;
 
-export const AppGallery = (props: IGalleryProps) => {
+export const AppGallery = (props: AppGalleryProps<unknown>) => {
   const {
     file = [],
     onDoubleTap = () => {},

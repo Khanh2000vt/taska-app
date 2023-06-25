@@ -1,8 +1,7 @@
-import {colors} from '@themes';
-import {scaler, Spacing} from '@utils';
+import {Colors, scaler, Spacing} from '@themes';
 import React from 'react';
 import {Animated, Dimensions, StyleSheet} from 'react-native';
-import {IPaginationProps} from './AppGallery.props';
+import {PaginationProps} from './AppGallery.props';
 
 const {width, height} = Dimensions.get('window');
 
@@ -29,7 +28,7 @@ export const Pagination = ({
   scrollX,
   pageWidth = width,
   dotStyle,
-}: IPaginationProps) => {
+}: PaginationProps) => {
   return (
     <Animated.View style={[styles.container, paginationStyle]}>
       {Array.from({length: size}).map((_, index) => {
@@ -73,7 +72,7 @@ const styles = StyleSheet.create({
     height: scaler(10),
     width: scaler(10),
     borderRadius: scaler(10) / 2,
-    backgroundColor: colors.secondary,
+    backgroundColor: Colors.primary,
     marginRight: Spacing.width12,
   },
 });
