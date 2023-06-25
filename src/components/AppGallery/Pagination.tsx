@@ -32,28 +32,45 @@ export const Pagination = ({
   return (
     <Animated.View style={[styles.container, paginationStyle]}>
       {Array.from({length: size}).map((_, index) => {
-        const width = scrollX.interpolate({
+        // const width = scrollX.interpolate({
+        //   inputRange: [
+        //     pageWidth * (index - 1),
+        //     pageWidth * index,
+        //     pageWidth * (index + 1),
+        //   ],
+        //   outputRange: [6, 6, 6],
+        //   extrapolate: 'clamp',
+        // });
+        // const opacity = scrollX.interpolate({
+        //   inputRange: [
+        //     pageWidth * (index - 1),
+        //     pageWidth * index,
+        //     pageWidth * (index + 1),
+        //   ],
+        //   outputRange: [0.24, 1, 0.24],
+        //   extrapolate: 'clamp',
+        // });
+        const backgroundColor = scrollX.interpolate({
           inputRange: [
             pageWidth * (index - 1),
             pageWidth * index,
             pageWidth * (index + 1),
           ],
-          outputRange: [10, 32, 10],
-          extrapolate: 'clamp',
-        });
-        const opacity = scrollX.interpolate({
-          inputRange: [
-            pageWidth * (index - 1),
-            pageWidth * index,
-            pageWidth * (index + 1),
-          ],
-          outputRange: [0.24, 1, 0.24],
+          outputRange: [Colors.gray.gray60, Colors.primary, Colors.gray.gray60],
           extrapolate: 'clamp',
         });
         return (
           <Animated.View
             key={index}
-            style={[styles.normalDot, {width, opacity}, dotStyle]}
+            style={[
+              styles.normalDot,
+              {
+                // width,
+                backgroundColor: backgroundColor,
+                // opacity,
+              },
+              dotStyle,
+            ]}
           />
         );
       })}
@@ -69,9 +86,9 @@ const styles = StyleSheet.create({
     marginVertical: Spacing.height24,
   },
   normalDot: {
-    height: scaler(10),
-    width: scaler(10),
-    borderRadius: scaler(10) / 2,
+    height: scaler(6),
+    width: scaler(6),
+    borderRadius: scaler(6) / 2,
     backgroundColor: Colors.primary,
     marginRight: Spacing.width12,
   },

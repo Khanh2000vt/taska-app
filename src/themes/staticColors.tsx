@@ -13,6 +13,7 @@ export const Colors = {
     gray30: '#EEEEEE',
     gray40: '#616161',
     gray50: '#424242',
+    gray60: '#E0E0E0',
   },
 };
 

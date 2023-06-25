@@ -4,10 +4,11 @@ import {dimensions, Spacing} from '@themes';
 export const styles = StyleSheet.create({
   scroll: {
     flexGrow: 1,
-    width: dimensions.width - Spacing.width32,
+    width: dimensions.width,
   },
   button: {
-    width: dimensions.width - Spacing.width32,
+    // width: dimensions.width - Spacing.width32,
+    width: dimensions.width,
     // flex: 1,
     alignItems: 'center',
     justifyContent: 'center',

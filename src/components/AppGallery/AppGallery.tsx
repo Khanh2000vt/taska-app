@@ -12,8 +12,8 @@ import {
   View,
 } from 'react-native';
 import {AppGalleryProps} from './AppGallery.props';
-import {Pagination} from './Pagination';
 import {styles} from './AppGallery.styles';
+import {Pagination} from './Pagination';
 
 const ITEM_WIDTH = dimensions.width - Spacing.width32;
 
@@ -195,18 +195,24 @@ export const AppGallery = (props: AppGalleryProps<unknown>) => {
           </View>
         )}
       </View>
-      <AppButton
-        label="Next"
-        style={{
-          alignSelf: 'center',
-          paddingHorizontal: Spacing.width32,
-          backgroundColor: Colors.primary,
-        }}
-        labelStyle={{
-          ...Fonts.fontWeight700,
-        }}
-        onPress={handleNext}
-      />
+      <View>
+        <AppButton
+          label="Next"
+          labelStyle={{
+            ...Fonts.fontWeight700,
+          }}
+          onPress={handleNext}
+        />
+
+        <AppButton
+          label="Skip"
+          labelStyle={{
+            ...Fonts.fontWeight700,
+          }}
+          style={{}}
+          onPress={handleNext}
+        />
+      </View>
     </>
   );
 };
