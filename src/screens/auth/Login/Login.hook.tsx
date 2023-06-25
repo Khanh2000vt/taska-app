@@ -22,23 +22,23 @@ export const LoginFunctionHook = () => {
 
   const {t} = useTranslation();
 
-  const listLoginSocial: ILoginSocial[] = [
-    {
-      id: 1,
-      icon: Svgs.Facebook,
-      onPress: () => {},
-    },
-    {
-      id: 2,
-      icon: Svgs.Google,
-      onPress: () => {},
-    },
-    {
-      id: 3,
-      icon: Svgs.Apple,
-      onPress: () => {},
-    },
-  ];
+  // const listLoginSocial: ILoginSocial[] = [
+  //   {
+  //     id: 1,
+  //     icon: Svgs.Facebook,
+  //     onPress: () => {},
+  //   },
+  //   {
+  //     id: 2,
+  //     icon: Svgs.Google,
+  //     onPress: () => {},
+  //   },
+  //   {
+  //     id: 3,
+  //     icon: Svgs.Apple,
+  //     onPress: () => {},
+  //   },
+  // ];
 
   const listLanguage: IOption<LANGUAGE>[] = [
     {
@@ -80,7 +80,7 @@ export const LoginFunctionHook = () => {
     initialValues,
     handleLogin,
     handleRememberMe,
-    listLoginSocial,
+    // listLoginSocial,
     rememberMe,
     listLanguage,
     refModal,

@@ -1,7 +1,7 @@
 import {Svgs} from '@assets';
 import {AppText} from '@components/AppText';
 import {AppTouchable} from '@components/AppTouchable';
-import {Colors, FontSize, scaler, Spacing} from '@theme';
+import {Colors, FontSize, scaler, Spacing} from '@themes';
 import React from 'react';
 import {Text, TextInput, View} from 'react-native';
 import {AppInputFormikHook} from './AppInputFormik.hook';
@@ -92,7 +92,7 @@ export const AppInputFormik = (props: PropsAppInputFormik) => {
         {showBtnDelete && (
           <AppTouchable style={styles.btnDelete} onPress={() => setValue('')}>
             <View style={styles.viewIconDelete}>
-              <Svgs.Close size={scaler(12)} color={Colors.white} />
+              {/* <Svgs.Close size={scaler(12)} color={Colors.white} /> */}
             </View>
           </AppTouchable>
         )}
@@ -105,7 +105,7 @@ export const AppInputFormik = (props: PropsAppInputFormik) => {
               alignItems: 'center',
             }}
             onPress={() => setShow(!show)}>
-            {show ? <Svgs.EyeSlash /> : <Svgs.Eye />}
+            {/* {show ? <Svgs.EyeSlash /> : <Svgs.Eye />} */}
           </AppTouchable>
         )}
       </View>

@@ -1,5 +1,5 @@
 import {IMargin} from '@interfaces';
-import {Colors, scaler} from '@theme';
+import {Colors, scaler} from '@themes';
 import React from 'react';
 import {ColorValue, StyleProp, View, ViewStyle} from 'react-native';
 

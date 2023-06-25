@@ -1,34 +1,40 @@
 import {ReactElement} from 'react';
 import {Animated, StyleProp, ViewStyle} from 'react-native';
 
-interface IGalleryStyle {
+type IGalleryStyle = {
   galleryStyle?: StyleProp<ViewStyle>;
   pageStyle?: StyleProp<ViewStyle>;
   doubleTapStyle?: StyleProp<ViewStyle>;
   indexViewStyle?: StyleProp<ViewStyle>;
-}
+};
 
-interface IDoubleTap {
-  onDoubleTap?: (item: any) => void;
+type IDoubleTap<T> = {
+  onDoubleTap?: (item: T) => void;
   DoubleTapElement?: React.ReactNode;
-}
+};
 
-interface IPagination {
+type IPaginationStyle = {
   paginationStyle?: StyleProp<ViewStyle>;
   dotStyle?: StyleProp<ViewStyle>;
   pageWidth?: number;
-}
+};
 
-export interface IPaginationProps extends IPagination {
+export type IPagination = {
   scrollX: Animated.Value;
   size: number;
-}
+};
 
-export interface IGalleryProps extends IGalleryStyle, IPagination, IDoubleTap {
-  onPress?: (item: any) => void;
-  file: any[];
-  children(data: any): ReactElement;
+export type IGallery<T> = {
+  onPress?: (item: T) => void;
+  file: T[];
+  children(data: T): ReactElement;
   showIndexCurrent?: boolean;
   showPagination?: boolean;
   ViewIndexElement?(indexCurrent: number, length: number): ReactElement;
-}
+};
+
+export type AppGalleryProps<T> = IGallery<T> &
+  IGalleryStyle &
+  IPaginationStyle &
+  IDoubleTap<T>;
+export type PaginationProps = IPagination & IPaginationStyle;

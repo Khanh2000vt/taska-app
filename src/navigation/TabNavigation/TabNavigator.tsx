@@ -25,7 +25,8 @@ const TabNavigator = () => {
     [HOME_TAB]: {
       name: HOME_TAB,
       route: screens.Home,
-      Icon: Svgs.Search,
+      // Icon: Svgs.Search,
+      Icon: <></>,
     },
     // [CALENDAR_TAB]: {
     //   name: CALENDAR_TAB,

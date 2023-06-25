@@ -1,7 +1,7 @@
 import {GlobalService, GlobalUI} from '@components';
 import {NavigationApp, NavigationUtils} from '@navigation';
 import {persistor, store} from '@redux/store';
-import {ThemeProvider} from '@theme';
+import {ThemeProvider} from '@themes';
 import {initI18n, loadLocaleLanguage} from '@translations';
 import {useEffect} from 'react';
 import {

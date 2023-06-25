@@ -1,6 +1,6 @@
 import {AppButton} from '@components/AppButton';
 import {navigate, ROUTE_AUTH} from '@navigation';
-import {Colors, dimensions, Fonts, Spacing} from '@theme';
+import {Colors, dimensions, Fonts, Spacing} from '@themes';
 import React, {useCallback, useMemo, useRef} from 'react';
 import {
   Animated,
@@ -11,13 +11,13 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {IGalleryProps} from './AppGallery.props';
-import {Pagination} from './Pagination';
+import {AppGalleryProps} from './AppGallery.props';
 import {styles} from './AppGallery.styles';
+import {Pagination} from './Pagination';
 
 const ITEM_WIDTH = dimensions.width - Spacing.width32;
 
-export const AppGallery = (props: IGalleryProps) => {
+export const AppGallery = (props: AppGalleryProps<unknown>) => {
   const {
     file = [],
     onDoubleTap = () => {},
@@ -195,18 +195,24 @@ export const AppGallery = (props: IGalleryProps) => {
           </View>
         )}
       </View>
-      <AppButton
-        label="Next"
-        style={{
-          alignSelf: 'center',
-          paddingHorizontal: Spacing.width32,
-          backgroundColor: Colors.primary,
-        }}
-        labelStyle={{
-          ...Fonts.fontWeight700,
-        }}
-        onPress={handleNext}
-      />
+      <View>
+        <AppButton
+          label="Next"
+          labelStyle={{
+            ...Fonts.fontWeight700,
+          }}
+          onPress={handleNext}
+        />
+
+        <AppButton
+          label="Skip"
+          labelStyle={{
+            ...Fonts.fontWeight700,
+          }}
+          style={{}}
+          onPress={handleNext}
+        />
+      </View>
     </>
   );
 };

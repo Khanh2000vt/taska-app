@@ -1,4 +1,4 @@
-import {Colors} from '@theme';
+import {Colors} from '@themes';
 import {useRef} from 'react';
 import {openSettings} from 'react-native-permissions';
 

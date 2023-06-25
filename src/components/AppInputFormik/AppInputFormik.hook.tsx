@@ -1,5 +1,5 @@
 import {useFieldFormik} from '@hooks';
-import {Colors} from '@theme';
+import {Colors} from '@themes';
 import {useState} from 'react';
 import {ColorValue} from 'react-native';
 

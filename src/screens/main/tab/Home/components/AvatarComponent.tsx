@@ -5,7 +5,7 @@ import {
   ModalRequestPermission,
 } from '@components';
 import {PHOTO} from '@constants';
-import {scaler} from '@theme';
+import {scaler} from '@themes';
 import {checkPhotoLibrary} from '@utils';
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {Image, StyleSheet, View} from 'react-native';
@@ -72,7 +72,7 @@ export const AvatarComponent = () => {
           right: 0,
           padding: scaler(3),
         }}>
-        <Svgs.EditSquare />
+        {/* <Svgs.EditSquare /> */}
       </AppTouchable>
       <ModalRequestPermission ref={refPermission} />
     </View>

@@ -3,6 +3,7 @@ export enum ROUTE_TAB {
   TAB = 'TAB',
 }
 export enum ROUTE_AUTH {
+  INTRO = 'INTRO',
   LOGIN = 'LOGIN',
 }
 

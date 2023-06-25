@@ -1,4 +1,4 @@
-import {Colors, Fonts, FontSize, scaler, Spacing} from '@theme';
+import {Colors, Fonts, FontSize, scaler, Spacing} from '@themes';
 import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({

@@ -3,7 +3,7 @@ import {Switch} from 'react-native-switch';
 import {StyleSheet, View, ViewStyle} from 'react-native';
 
 import {AppText} from '../AppText';
-import {Colors, Fonts, FontSize} from '@theme';
+import {Colors, Fonts, FontSize} from '@themes';
 
 interface IAppSwitch {
   title?: string;

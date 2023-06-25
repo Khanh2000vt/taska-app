@@ -1,4 +1,4 @@
-import {Colors, Fonts, FontSize} from '@theme';
+import {Colors, Fonts, FontSize} from '@themes';
 import React from 'react';
 import {ColorValue, StyleProp, Text, TextProps, TextStyle} from 'react-native';
 import TextTicker from 'react-native-text-ticker';

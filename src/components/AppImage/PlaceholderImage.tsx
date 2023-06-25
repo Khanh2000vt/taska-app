@@ -1,7 +1,7 @@
 /*
 - Tuỳ chỉnh placeholder khi image đang load ở đây
  */
-import {Colors} from '@theme';
+import {Colors} from '@themes';
 import React from 'react';
 import {ActivityIndicator, StyleSheet} from 'react-native';
 

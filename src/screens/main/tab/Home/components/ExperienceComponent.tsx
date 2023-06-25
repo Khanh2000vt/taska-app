@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {Colors, Fonts, FontSize, scaler} from '@theme';
+import {Colors, Fonts, FontSize, scaler} from '@themes';
 import {AppText} from '@components';
 
 export const ExperienceComponent = () => {

@@ -16,6 +16,7 @@ const AuthStackComponent = memo(() => {
         screenOptions={{
           headerShown: false,
         }}>
+        <AuthStack.Screen name={ROUTE_AUTH.INTRO} component={screens.Intro} />
         <AuthStack.Screen name={ROUTE_AUTH.LOGIN} component={screens.Login} />
       </AuthStack.Navigator>
       <StatusBar barStyle="light-content" />

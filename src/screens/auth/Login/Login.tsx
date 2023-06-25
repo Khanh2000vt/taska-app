@@ -11,8 +11,8 @@ import {
   LineView,
   RowView,
 } from '@components';
-import {Colors, dimensions, Fonts, FontSize, scaler, Spacing} from '@theme';
-import {SignInSchema} from '@validate';
+import {Colors, dimensions, Fonts, FontSize, scaler, Spacing} from '@themes';
+import {SignInSchema} from '@validates';
 import {Formik} from 'formik';
 import React from 'react';
 import {View} from 'react-native';
@@ -26,7 +26,7 @@ export const Login = () => {
     initialValues,
     handleLogin,
     handleRememberMe,
-    listLoginSocial,
+    // listLoginSocial,
     rememberMe,
     listLanguage,
     refModal,
@@ -57,12 +57,12 @@ export const Login = () => {
                   <AppInputFormik
                     labelFormik="email"
                     placeholder={t('common.email') as string}
-                    IconLeft={Svgs.EmailInput}
+                    // IconLeft={Svgs.EmailInput}
                   />
                   <AppInputFormik
                     labelFormik="password"
                     placeholder={t('common.password') as string}
-                    IconLeft={Svgs.LockInput}
+                    // IconLeft={Svgs.LockInput}
                     password
                   />
                   <AppCheckBox
@@ -94,13 +94,13 @@ export const Login = () => {
                     <LineView style={styles.line} />
                   </RowView>
                   <RowView gap={Spacing.width20} center>
-                    {listLoginSocial.map(item => {
+                    {/* {listLoginSocial.map(item => {
                       return (
                         <AppTouchable key={item.id} style={styles.buttonSocial}>
                           <item.icon />
                         </AppTouchable>
                       );
-                    })}
+                    })} */}
                   </RowView>
                 </View>
                 <RowView gap={Spacing.width8} center mt={scaler(100)}>
