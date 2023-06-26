@@ -10,7 +10,6 @@ import {IDataIntro} from '@interfaces';
 import {Fonts, FontSize, Spacing} from '@themes';
 import React, {useRef} from 'react';
 import {Image, View} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import {styles} from './Intro.style';
 
 export const Intro = () => {
@@ -50,7 +49,7 @@ export const Intro = () => {
   ];
 
   return (
-    <AppScreen>
+    <AppScreen horizontal={0}>
       <AppGallery file={data} showIndexCurrent={false} ref={refGallery}>
         {(item: IDataIntro) => {
           return (
@@ -73,7 +72,10 @@ export const Intro = () => {
         }}
       </AppGallery>
       <View
-        style={{rowGap: Spacing.height12, paddingHorizontal: Spacing.width24}}>
+        style={{
+          rowGap: Spacing.height12,
+          paddingHorizontal: Spacing.width24,
+        }}>
         {listButton.map(button => (
           <AppButton
             label={button.title}

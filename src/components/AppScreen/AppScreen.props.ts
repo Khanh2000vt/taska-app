@@ -22,24 +22,33 @@ type IFlatListScreen = {
 
 type IAppScreen = {
   type?: 'view' | 'scroll-view' | 'flat-list';
-  header?: IHeader;
+
   flatList?: Omit<
     FlatListProps<number>,
     | 'renderItem'
     | 'refreshControl'
     | 'onEndReached'
     | 'showsVerticalScrollIndicator'
+    | 'data'
   > &
     IFlatListScreen;
+  horizontal?: number;
+  top?: number;
+  bottom?: number;
 };
 
 type IView = {
-  children(item: number): React.ReactNode;
+  children: React.ReactNode;
   style?: StyleProp<ViewStyle>;
 };
 
-export type AppScreenProps = IAppScreen & IView;
-export type AppScreenHeaderProps = Pick<AppScreenProps, 'header' | 'type'>;
+type IHeaderScreen = {
+  header?: IHeader;
+  padding?: number;
+};
+
+export type AppScreenProps = IAppScreen & IView & IHeaderScreen;
+export type AppScreenHeaderProps = Pick<AppScreenProps, 'type'> & IHeaderScreen;
 export type BodyScreenProps = IView;
 export type SwitchScreenProps = Omit<AppScreenProps, 'header'> & IView;
 export type FlatListScreenProps = Omit<AppScreenProps, 'type' | 'header'>;
