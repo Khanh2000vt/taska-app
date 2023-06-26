@@ -2,7 +2,7 @@ import {Colors} from '@themes';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {AppScreenProps, SwitchScreenProps} from './AppScreen.props';
-import {HeaderAppScreen, ViewScreen} from './components';
+import {HeaderAppScreen, ScrollViewScreen, ViewScreen} from './components';
 
 export const AppScreen = ({
   type = 'view',
@@ -22,6 +22,8 @@ const BodyAppScreen = ({type, children, style}: SwitchScreenProps) => {
   switch (type) {
     case 'view':
       return <ViewScreen style={style}>{children}</ViewScreen>;
+    case 'scroll-view':
+      return <ScrollViewScreen style={style}>{children}</ScrollViewScreen>;
     default:
       return null;
   }
