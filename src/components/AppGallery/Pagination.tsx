@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginVertical: Spacing.height24,
+    marginVertical: Spacing.height40,
   },
   normalDot: {
     height: scaler(6),

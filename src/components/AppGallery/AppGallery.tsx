@@ -7,7 +7,7 @@ import {AppGalleryProps, RefAppGalleryProps} from './AppGallery.props';
 import {styles} from './AppGallery.styles';
 import {Pagination} from './Pagination';
 
-const ITEM_WIDTH = dimensions.width - Spacing.width32;
+const ITEM_WIDTH = dimensions.width;
 
 export const AppGallery = forwardRef<
   RefAppGalleryProps,
@@ -52,7 +52,7 @@ export const AppGallery = forwardRef<
 
   return (
     <>
-      <View>
+      <View style={{flex: 1}}>
         <FlatList
           ref={refFlatList}
           getItemLayout={(data, index) => ({

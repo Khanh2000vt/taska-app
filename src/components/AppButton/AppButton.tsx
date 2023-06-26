@@ -15,7 +15,7 @@ export function AppButton(props: ButtonProps) {
     numberOfLines,
     isWrap,
     outline = false,
-    secondary = true,
+    secondary = false,
     ...prop
   } = props;
 

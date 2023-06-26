@@ -1,13 +1,14 @@
 import {Images} from '@assets';
-import {AppGallery, AppText} from '@components';
+import {AppButton, AppGallery, AppText, RefAppGalleryProps} from '@components';
 import {IDataIntro} from '@interfaces';
-import {Fonts, FontSize} from '@themes';
-import React from 'react';
+import {Fonts, FontSize, Spacing} from '@themes';
+import React, {useRef} from 'react';
 import {Image, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {styles} from './Intro.style';
 
 export const Intro = () => {
+  const refGallery = useRef<RefAppGalleryProps>(null);
   const data: IDataIntro[] = [
     {
       id: 1,
@@ -31,14 +32,29 @@ export const Intro = () => {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     },
   ];
+
+  const listButton = [
+    {
+      id: 1,
+      title: 'Next',
+      onPress: () => refGallery.current?.scrollNext(() => {}),
+      secondary: false,
+    },
+    {id: 2, title: 'Skip', onPress: () => {}, secondary: true},
+  ];
+
   return (
-    <View>
+    <View style={{backgroundColor: '#FFFFFF', flex: 1}}>
       <SafeAreaView edges={['top']} />
 
-      <AppGallery file={data} showIndexCurrent={false}>
+      <AppGallery file={data} showIndexCurrent={false} ref={refGallery}>
         {(item: IDataIntro) => {
           return (
-            <View style={{alignItems: 'center'}}>
+            <View
+              style={{
+                alignItems: 'center',
+                paddingHorizontal: Spacing.width24,
+              }}>
               <Image
                 source={item.source}
                 style={styles.image}
@@ -52,6 +68,17 @@ export const Intro = () => {
           );
         }}
       </AppGallery>
+      <View
+        style={{rowGap: Spacing.height12, paddingHorizontal: Spacing.width24}}>
+        {listButton.map(button => (
+          <AppButton
+            label={button.title}
+            onPress={button.onPress}
+            secondary={button.secondary}
+            key={button.id}
+          />
+        ))}
+      </View>
     </View>
   );
 };
