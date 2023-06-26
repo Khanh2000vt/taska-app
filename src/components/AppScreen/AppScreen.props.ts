@@ -41,5 +41,5 @@ type IView = {
 export type AppScreenProps = IAppScreen & IView;
 export type AppScreenHeaderProps = Pick<AppScreenProps, 'header' | 'type'>;
 export type BodyScreenProps = IView;
-export type SwitchScreenProps = Pick<AppScreenProps, 'type'> & IView;
+export type SwitchScreenProps = Omit<AppScreenProps, 'header'> & IView;
 export type FlatListScreenProps = Omit<AppScreenProps, 'type' | 'header'>;

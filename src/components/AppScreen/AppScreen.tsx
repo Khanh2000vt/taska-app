@@ -2,13 +2,19 @@ import {Colors} from '@themes';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {AppScreenProps, SwitchScreenProps} from './AppScreen.props';
-import {HeaderAppScreen, ScrollViewScreen, ViewScreen} from './components';
+import {
+  FlatListScreen,
+  HeaderAppScreen,
+  ScrollViewScreen,
+  ViewScreen,
+} from './components';
 
 export const AppScreen = ({
   type = 'view',
   style,
   header,
   children,
+  flatList,
 }: AppScreenProps) => {
   return (
     <View style={styles.container}>
@@ -18,12 +24,23 @@ export const AppScreen = ({
   );
 };
 
-const BodyAppScreen = ({type, children, style}: SwitchScreenProps) => {
+const BodyAppScreen = ({
+  type,
+  children,
+  style,
+  flatList,
+}: SwitchScreenProps) => {
   switch (type) {
     case 'view':
       return <ViewScreen style={style}>{children}</ViewScreen>;
     case 'scroll-view':
       return <ScrollViewScreen style={style}>{children}</ScrollViewScreen>;
+    case 'flat-list':
+      return (
+        <FlatListScreen flatList={flatList} style={style}>
+          {children}
+        </FlatListScreen>
+      );
     default:
       return null;
   }
