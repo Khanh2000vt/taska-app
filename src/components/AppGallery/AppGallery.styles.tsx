@@ -7,12 +7,9 @@ export const styles = StyleSheet.create({
     width: dimensions.width,
   },
   button: {
-    // width: dimensions.width - Spacing.width32,
     width: dimensions.width,
-    // flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: Spacing.width10,
   },
   indexImageContainer: {
     position: 'absolute',

@@ -18,4 +18,5 @@ export interface ButtonProps extends TouchableOpacityProps {
   backgroundColor?: string;
   marginTop?: number;
   outline?: boolean;
+  secondary?: boolean;
 }

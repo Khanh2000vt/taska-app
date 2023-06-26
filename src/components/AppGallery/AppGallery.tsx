@@ -1,23 +1,18 @@
 import {AppButton} from '@components/AppButton';
-import {navigate, ROUTE_AUTH} from '@navigation';
-import {Colors, dimensions, Fonts, Spacing} from '@themes';
-import React, {useCallback, useMemo, useRef} from 'react';
-import {
-  Animated,
-  FlatList,
-  NativeScrollEvent,
-  NativeSyntheticEvent,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import {AppGalleryProps} from './AppGallery.props';
+import {dimensions, Fonts, Spacing} from '@themes';
+import React, {forwardRef, useImperativeHandle} from 'react';
+import {Animated, FlatList, Text, TouchableOpacity, View} from 'react-native';
+import {AppGalleryHook} from './AppGallery.hook';
+import {AppGalleryProps, RefAppGalleryProps} from './AppGallery.props';
 import {styles} from './AppGallery.styles';
 import {Pagination} from './Pagination';
 
-const ITEM_WIDTH = dimensions.width - Spacing.width32;
+const ITEM_WIDTH = dimensions.width;
 
-export const AppGallery = (props: AppGalleryProps<unknown>) => {
+export const AppGallery = forwardRef<
+  RefAppGalleryProps,
+  AppGalleryProps<unknown>
+>((props, ref) => {
   const {
     file = [],
     onDoubleTap = () => {},
@@ -34,81 +29,30 @@ export const AppGallery = (props: AppGalleryProps<unknown>) => {
     showPagination = true,
     pageWidth = dimensions.width,
   } = props;
-  const scaleAnimation = useMemo(() => new Animated.Value(0), []);
-  const [page, setPage] = React.useState(1);
-  const scrollX = new Animated.Value(0);
-  const refNumTap = useRef(0);
-  const timer: any = useRef(null);
-  const refFlatList = useRef<FlatList>(null);
-  const indexRef = useRef<number>(1);
 
-  const startScaleView = useCallback(() => {
-    Animated.sequence([
-      Animated.spring(scaleAnimation, {
-        toValue: 1,
-        bounciness: 15,
-        useNativeDriver: true,
-      }),
-      Animated.timing(scaleAnimation, {
-        toValue: 0,
-        duration: 100,
-        useNativeDriver: true,
-      }),
-    ]).start();
-  }, [scaleAnimation]);
+  const {
+    refFlatList,
+    onScrollEnd,
+    scrollX,
+    onPressItem,
+    scaleAnimation,
+    scrollNext,
+    scrollPrevious,
+    page,
+  } = AppGalleryHook({file, pageWidth, onDoubleTap, onPress});
 
-  const onScrollEnd = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
-    const pageNumber = Math.min(
-      Math.max(Math.round(e.nativeEvent.contentOffset.x / pageWidth) + 1, 0),
-      file?.length,
-    );
-    setPage(pageNumber);
-    indexRef.current = pageNumber;
-  };
-
-  const onDoublePressTap = (item: any) => {
-    refNumTap.current += 1;
-    if (timer.current) {
-      clearTimeout(timer.current);
-    }
-
-    if (refNumTap.current >= 2) {
-      onDoubleTap(item);
-      startScaleView();
-      refNumTap.current = 0;
-    }
-
-    timer.current = setTimeout(() => {
-      if (refNumTap.current === 1) {
-        onPress(item);
-        refNumTap.current = 0;
-      }
-    }, 300);
-  };
-
-  const onPressItem = (item: any) => {
-    if (!onDoubleTap) {
-      onPress(item);
-    } else {
-      onDoublePressTap(item);
-    }
-  };
-
-  const handleNext = () => {
-    if (indexRef.current === 3) {
-      navigate(ROUTE_AUTH.LOGIN);
-    } else {
-      refFlatList?.current?.scrollToIndex({
-        index: indexRef.current,
-        animated: true,
-      });
-      indexRef.current += 1;
-    }
-  };
+  useImperativeHandle(
+    ref,
+    () => ({
+      scrollNext,
+      scrollPrevious,
+    }),
+    [],
+  );
 
   return (
     <>
-      <View>
+      <View style={{flex: 1}}>
         <FlatList
           ref={refFlatList}
           getItemLayout={(data, index) => ({
@@ -195,24 +139,6 @@ export const AppGallery = (props: AppGalleryProps<unknown>) => {
           </View>
         )}
       </View>
-      <View>
-        <AppButton
-          label="Next"
-          labelStyle={{
-            ...Fonts.fontWeight700,
-          }}
-          onPress={handleNext}
-        />
-
-        <AppButton
-          label="Skip"
-          labelStyle={{
-            ...Fonts.fontWeight700,
-          }}
-          style={{}}
-          onPress={handleNext}
-        />
-      </View>
     </>
   );
-};
+});
