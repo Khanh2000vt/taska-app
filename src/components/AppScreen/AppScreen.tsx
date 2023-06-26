@@ -1,14 +1,30 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
-import {AppScreenProps} from './AppScreen.props';
 import {Colors} from '@themes';
+import React from 'react';
+import {StyleSheet, View} from 'react-native';
+import {AppScreenProps, SwitchScreenProps} from './AppScreen.props';
+import {HeaderAppScreen, ViewScreen} from './components';
 
-export const AppScreen = ({type, style, header}: AppScreenProps) => {
+export const AppScreen = ({
+  type = 'view',
+  style,
+  header,
+  children,
+}: AppScreenProps) => {
   return (
     <View style={styles.container}>
-      <Text>AppScreen</Text>
+      <HeaderAppScreen header={header} />
+      <BodyAppScreen type={type} children={children} style={style} />
     </View>
   );
+};
+
+const BodyAppScreen = ({type, children, style}: SwitchScreenProps) => {
+  switch (type) {
+    case 'view':
+      return <ViewScreen style={style}>{children}</ViewScreen>;
+    default:
+      return null;
+  }
 };
 
 const styles = StyleSheet.create({

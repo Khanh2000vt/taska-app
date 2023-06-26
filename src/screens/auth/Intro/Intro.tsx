@@ -1,5 +1,11 @@
 import {Images} from '@assets';
-import {AppButton, AppGallery, AppText, RefAppGalleryProps} from '@components';
+import {
+  AppButton,
+  AppGallery,
+  AppScreen,
+  AppText,
+  RefAppGalleryProps,
+} from '@components';
 import {IDataIntro} from '@interfaces';
 import {Fonts, FontSize, Spacing} from '@themes';
 import React, {useRef} from 'react';
@@ -44,9 +50,7 @@ export const Intro = () => {
   ];
 
   return (
-    <View style={{backgroundColor: '#FFFFFF', flex: 1}}>
-      <SafeAreaView edges={['top']} />
-
+    <AppScreen>
       <AppGallery file={data} showIndexCurrent={false} ref={refGallery}>
         {(item: IDataIntro) => {
           return (
@@ -79,6 +83,6 @@ export const Intro = () => {
           />
         ))}
       </View>
-    </View>
+    </AppScreen>
   );
 };
