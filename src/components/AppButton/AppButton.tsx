@@ -15,6 +15,7 @@ export function AppButton(props: ButtonProps) {
     numberOfLines,
     isWrap,
     outline = false,
+    secondary = true,
     ...prop
   } = props;
 
@@ -26,6 +27,7 @@ export function AppButton(props: ButtonProps) {
         style={[
           styles.btn,
           outline && styles.btnOutline,
+          secondary && styles.btnSecondary,
           disabled && {opacity: 0.5},
           style,
         ]}
@@ -39,7 +41,12 @@ export function AppButton(props: ButtonProps) {
           </View>
         )}
         <Text
-          style={[styles.text, outline && styles.textOutline, labelStyle]}
+          style={[
+            styles.text,
+            outline && styles.textOutline,
+            secondary && styles.textSecondary,
+            labelStyle,
+          ]}
           numberOfLines={numberOfLines}>
           {label}
         </Text>

@@ -31,4 +31,10 @@ export const styles = StyleSheet.create({
   textOutline: {
     color: Colors.primary,
   },
+  btnSecondary: {
+    backgroundColor: Colors.secondary,
+  },
+  textSecondary: {
+    color: Colors.primary,
+  },
 });
