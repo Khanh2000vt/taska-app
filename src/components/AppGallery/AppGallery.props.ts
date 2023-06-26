@@ -33,8 +33,16 @@ export type IGallery<T> = {
   ViewIndexElement?(indexCurrent: number, length: number): ReactElement;
 };
 
+export type RefAppGalleryProps = {
+  scrollPrevious: (onCallback: () => void) => void;
+  scrollNext: (onCallback: () => void) => void;
+};
+
 export type AppGalleryProps<T> = IGallery<T> &
   IGalleryStyle &
   IPaginationStyle &
   IDoubleTap<T>;
 export type PaginationProps = IPagination & IPaginationStyle;
+export type AppGalleryHookProps<T> = Required<
+  Pick<AppGalleryProps<T>, 'file' | 'onPress' | 'onDoubleTap' | 'pageWidth'>
+>;
