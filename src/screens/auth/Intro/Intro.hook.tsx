@@ -1,11 +1,15 @@
 import {Images} from '@assets';
 import {RefAppGalleryProps} from '@components';
-import {IButton, IDataIntro} from '@interfaces';
+import {IButton, IDataIntro, INavigateAuth} from '@interfaces';
+import {ROUTE_AUTH} from '@navigation';
+import {useNavigation} from '@react-navigation/native';
 import {useRef} from 'react';
 import {useTranslation} from 'react-i18next';
 
 export const IntroHook = () => {
   const {t} = useTranslation();
+  const navigation =
+    useNavigation<INavigateAuth<ROUTE_AUTH.INTRO, 'navigation'>>();
 
   const refGallery = useRef<RefAppGalleryProps>(null);
   const data: IDataIntro[] = [
@@ -33,16 +37,20 @@ export const IntroHook = () => {
     {
       id: 1,
       label: t('common.next'),
-      onPress: () => refGallery.current?.scrollNext(() => {}),
+      onPress: () => refGallery.current?.scrollNext(handleNavigate),
       secondary: false,
     },
     {
       id: 2,
       label: t('common.skip'),
-      onPress: () => {},
+      onPress: () => handleNavigate,
       secondary: true,
     },
   ];
+
+  const handleNavigate = () => {
+    navigation.navigate(ROUTE_AUTH.LOGIN);
+  };
 
   return {data, refGallery, listButton};
 };
