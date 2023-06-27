@@ -1,8 +1,13 @@
 import {Svgs} from '@assets';
-import {IButton} from '@interfaces';
+import {IButton, INavigateAuth} from '@interfaces';
+import {ROUTE_AUTH} from '@navigation';
+import {useNavigation} from '@react-navigation/native';
 import {useTranslation} from 'react-i18next';
 
 export const LoginFunctionHook = () => {
+  const navigation =
+    useNavigation<INavigateAuth<ROUTE_AUTH.LOGIN, 'navigation'>>();
+
   const {t} = useTranslation();
   const listLoginSocial: IButton[] = [
     {
@@ -24,8 +29,13 @@ export const LoginFunctionHook = () => {
       icon: Svgs.Apple,
     },
   ];
+
+  const handleSignInPassword = () => {
+    navigation.navigate(ROUTE_AUTH.SIGN_IN_PASSWORD);
+  };
   return {
     t,
     listLoginSocial,
+    handleSignInPassword,
   };
 };

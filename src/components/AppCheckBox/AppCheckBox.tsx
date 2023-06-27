@@ -11,11 +11,10 @@ import {Svgs} from '@assets';
 import {AppTouchable} from '@components/AppTouchable';
 import {Spacing} from '@themes';
 import {AppText} from '@components/AppText';
-import {DefaultTFuncReturn} from 'i18next';
 
 type Props = {
   checked: boolean;
-  label?: string | DefaultTFuncReturn;
+  label?: string;
   style?: StyleProp<ViewStyle>;
   styleLabel?: StyleProp<TextStyle>;
   onChangeValue: (checked: boolean) => void;
@@ -32,7 +31,7 @@ export const AppCheckBox = ({
     <AppTouchable
       style={[styles.container, style]}
       onPress={() => onChangeValue(!checked)}>
-      {/* {checked ? <Svgs.CheckBox /> : <Svgs.TickSquare />} */}
+      {checked ? <Svgs.CheckBox /> : <Svgs.TickSquare />}
       {!!label && (
         <AppText numberOfLines={1} style={styleLabel}>
           {label}

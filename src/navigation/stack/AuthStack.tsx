@@ -17,6 +17,7 @@ const AuthStackComponent = memo(() => {
         // }
         screenOptions={{
           headerShown: false,
+          gestureEnabled: true,
         }}>
         <AuthStack.Screen name={ROUTE_AUTH.INTRO} component={screens.Intro} />
         <AuthStack.Screen
