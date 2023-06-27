@@ -21,7 +21,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {SignInPasswordHook} from './SignInPassword.hook';
 import {styles} from './SignInPassword.style';
 
-export const Login = () => {
+export const SignInPassword = () => {
   const {
     initialValues,
     handleLogin,

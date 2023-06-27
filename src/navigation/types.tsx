@@ -26,6 +26,7 @@ export type RootStackParamList = {
 export type AuthStackParamList = {
   INTRO: undefined;
   LOGIN: undefined;
+  SIGN_IN_PASSWORD: undefined;
   SIGN_UP: undefined;
   FORGOT_PASSWORD: undefined;
   VERIFICATION: undefined;

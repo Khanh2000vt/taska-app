@@ -26,6 +26,10 @@ const AuthStackComponent = memo(() => {
             gestureEnabled: false,
           }}
         />
+        <AuthStack.Screen
+          name={ROUTE_AUTH.SIGN_IN_PASSWORD}
+          component={screens.SignInPassword}
+        />
       </AuthStack.Navigator>
       <StatusBar barStyle="light-content" />
     </>
