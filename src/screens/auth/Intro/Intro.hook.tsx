@@ -43,7 +43,7 @@ export const IntroHook = () => {
     {
       id: 2,
       label: t('common.skip'),
-      onPress: () => handleNavigate,
+      onPress: () => handleNavigate(),
       secondary: true,
     },
   ];

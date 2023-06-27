@@ -1,43 +1,19 @@
-import {Svgs} from '@assets';
 import {
   AppButton,
   AppScreen,
   AppText,
-  AppTouchable,
   LineView,
   Link,
   RowView,
 } from '@components';
-import {IButton} from '@interfaces';
 import {Colors, Fonts, FontSize, scaler, Spacing} from '@themes';
 import React from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import {LoginFunctionHook} from './Login.hook';
 import {styles} from './Login.style';
 
 export const Login = () => {
-  const {t} = LoginFunctionHook();
-
-  const listLoginSocial: IButton[] = [
-    {
-      id: 1,
-      label: 'Facebook',
-      onPress: () => {},
-      icon: Svgs.Facebook,
-    },
-    {
-      id: 2,
-      label: 'Google',
-      onPress: () => {},
-      icon: Svgs.Google,
-    },
-    {
-      id: 3,
-      label: 'Apple',
-      onPress: () => {},
-      icon: Svgs.Apple,
-    },
-  ];
+  const {t, listLoginSocial} = LoginFunctionHook();
 
   return (
     <AppScreen style={styles.container}>
