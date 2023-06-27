@@ -1,4 +1,5 @@
 import {Block} from '@components/Block';
+import {Colors, Shadow} from '@themes';
 import React from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {ButtonProps} from './AppButton.props';
@@ -16,6 +17,7 @@ export function AppButton(props: ButtonProps) {
     isWrap,
     outline = false,
     secondary = false,
+    shadow = false,
     ...prop
   } = props;
 
@@ -28,7 +30,11 @@ export function AppButton(props: ButtonProps) {
           styles.btn,
           outline && styles.btnOutline,
           secondary && styles.btnSecondary,
-          disabled && {opacity: 0.5},
+          disabled
+            ? {backgroundColor: Colors.disableButton}
+            : shadow
+            ? {...Shadow.button}
+            : {},
           style,
         ]}
         onPress={() => {

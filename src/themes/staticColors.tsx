@@ -3,6 +3,7 @@ export const Colors = {
   white: '#FFFFFF',
   dark: '#000000',
   primary: '#246BFD',
+  disableButton: '#476EBE',
   error: '#FA6A50',
   errorLight: '#f6c67d',
   transparent: '#00000000',
@@ -39,5 +40,16 @@ export const Shadow = {
     shadowOpacity: 0.51,
     shadowRadius: 13.16,
     elevation: 20,
+  },
+  button: {
+    shadowColor: Colors.disableButton,
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+
+    elevation: 6,
   },
 };

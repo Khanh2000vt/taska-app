@@ -65,6 +65,7 @@ export const SignInPassword = () => {
                   label={t('signIn.signIn')}
                   onPress={handleSubmit}
                   disabled={!(!!values.email && !!values.password)}
+                  shadow
                 />
                 <Link
                   text={{
