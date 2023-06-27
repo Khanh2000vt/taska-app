@@ -6,6 +6,8 @@ import {StatusBar} from 'react-native';
 
 const AuthStack = createStackNavigator();
 
+const gesturesDisabled: ROUTE_AUTH[] = [ROUTE_AUTH.LOGIN];
+
 const AuthStackComponent = memo(() => {
   return (
     <>
@@ -15,9 +17,20 @@ const AuthStackComponent = memo(() => {
         // }
         screenOptions={{
           headerShown: false,
+          gestureEnabled: true,
         }}>
         <AuthStack.Screen name={ROUTE_AUTH.INTRO} component={screens.Intro} />
-        <AuthStack.Screen name={ROUTE_AUTH.LOGIN} component={screens.Login} />
+        <AuthStack.Screen
+          name={ROUTE_AUTH.LOGIN}
+          component={screens.Login}
+          options={{
+            gestureEnabled: false,
+          }}
+        />
+        <AuthStack.Screen
+          name={ROUTE_AUTH.SIGN_IN_PASSWORD}
+          component={screens.SignInPassword}
+        />
       </AuthStack.Navigator>
       <StatusBar barStyle="light-content" />
     </>

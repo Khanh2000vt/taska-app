@@ -12,3 +12,11 @@ type IData = {
   done: boolean;
 };
 export type IArrayData<T> = IData & T;
+
+export type IButton = {
+  id: number;
+  label: string;
+  onPress: () => void;
+  secondary?: boolean;
+  icon?: Element;
+};

@@ -44,4 +44,10 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: scaler(8),
   },
+  btnEye: {
+    height: '100%',
+    paddingHorizontal: scaler(8),
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });

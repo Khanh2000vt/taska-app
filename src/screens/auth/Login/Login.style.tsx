@@ -2,34 +2,18 @@ import {Colors, scaler, Spacing} from '@themes';
 import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
-  scroll: {
-    paddingHorizontal: Spacing.width24,
-    paddingTop: Spacing.height12,
-    paddingBottom: Spacing.height20,
+  container: {
+    justifyContent: 'space-between',
   },
-  viewLogin: {
-    rowGap: Spacing.height24,
-    marginTop: Spacing.height54,
-    marginBottom: Spacing.height76,
-  },
-  viewLine: {
-    rowGap: Spacing.height30,
-  },
-  line: {
-    flex: 1,
-  },
-  buttonSocial: {
-    backgroundColor: Colors.white,
-    borderWidth: scaler(1),
-    width: scaler(88),
-    height: scaler(60),
+  button: {
     borderRadius: scaler(16),
     borderColor: Colors.gray.gray30,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
-  btnLNG: {
-    alignSelf: 'flex-end',
-    paddingLeft: scaler(10),
+  textButton: {
+    color: Colors.textColor,
+  },
+  viewButton: {
+    rowGap: scaler(16),
+    marginTop: Spacing.height100,
   },
 });

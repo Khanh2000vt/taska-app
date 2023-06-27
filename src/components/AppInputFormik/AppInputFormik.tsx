@@ -38,8 +38,6 @@ export const AppInputFormik = (props: PropsAppInputFormik) => {
     getColorIcon,
   } = AppInputFormikHook(labelFormik, isShowError);
 
-  const showBtnEye = password && isFocus;
-
   return (
     <View
       style={[
@@ -92,20 +90,22 @@ export const AppInputFormik = (props: PropsAppInputFormik) => {
         {showBtnDelete && (
           <AppTouchable style={styles.btnDelete} onPress={() => setValue('')}>
             <View style={styles.viewIconDelete}>
-              {/* <Svgs.Close size={scaler(12)} color={Colors.white} /> */}
+              <Svgs.Close size={scaler(12)} color={Colors.white} />
             </View>
           </AppTouchable>
         )}
-        {showBtnEye && (
+        {password && (
           <AppTouchable
-            style={{
-              height: '100%',
-              paddingHorizontal: scaler(8),
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
+            style={[
+              styles.btnEye,
+              !showBtnDelete && {paddingRight: scaler(20)},
+            ]}
             onPress={() => setShow(!show)}>
-            {/* {show ? <Svgs.EyeSlash /> : <Svgs.Eye />} */}
+            {show ? (
+              <Svgs.EyeSlash color={getColorIcon()} />
+            ) : (
+              <Svgs.Eye color={getColorIcon()} />
+            )}
           </AppTouchable>
         )}
       </View>
