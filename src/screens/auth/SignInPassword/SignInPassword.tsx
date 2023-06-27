@@ -10,6 +10,7 @@ import {
   ColumnView,
   ItemOption,
   LineView,
+  Link,
   RowView,
 } from '@components';
 import {Colors, dimensions, Fonts, FontSize, scaler, Spacing} from '@themes';
@@ -31,10 +32,10 @@ export const SignInPassword = () => {
   } = SignInPasswordHook();
 
   return (
-    <AppScreen style={{justifyContent: 'space-between'}}>
-      <View style={{justifyContent: 'center', flex: 1}}>
+    <AppScreen style={styles.container}>
+      <View style={styles.body}>
         <AppText size={FontSize.Font48} font={Fonts.fontWeight700}>
-          {t('login.title')}
+          {t('signIn.title')}
         </AppText>
         <Formik
           initialValues={initialValues}
@@ -57,22 +58,21 @@ export const SignInPassword = () => {
                 <AppCheckBox
                   checked={rememberMe}
                   onChangeValue={handleRememberMe}
-                  label={t('login.remember')}
-                  style={{justifyContent: 'center'}}
+                  label={t('signIn.remember')}
+                  style={styles.checkbox}
                 />
                 <AppButton
-                  label={t('login.signIn')}
+                  label={t('signIn.signIn')}
                   onPress={handleSubmit}
                   disabled={!(!!values.email && !!values.password)}
                 />
-                <AppTouchable>
-                  <AppText
-                    style={{textAlign: 'center'}}
-                    size={FontSize.Font16}
-                    color={Colors.primary}>
-                    {t('login.forgot')}
-                  </AppText>
-                </AppTouchable>
+                <Link
+                  text={{
+                    center: true,
+                    size: FontSize.Font16,
+                  }}>
+                  {t('login.forgot')}
+                </Link>
               </ColumnView>
             </>
           )}
@@ -82,7 +82,7 @@ export const SignInPassword = () => {
         <RowView gap={Spacing.width16} center mv={Spacing.height30}>
           <LineView />
           <AppText size={FontSize.Font18} color={Colors.gray.gray40}>
-            {t('login.continueOther')}
+            {t('signIn.continueOther')}
           </AppText>
           <LineView />
         </RowView>

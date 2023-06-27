@@ -3,7 +3,7 @@ import React from 'react';
 import {ColorValue, StyleProp, Text, TextProps, TextStyle} from 'react-native';
 import TextTicker from 'react-native-text-ticker';
 
-interface AppTextProps extends TextProps {
+export interface AppTextProps extends TextProps {
   numberOfLines?: number;
   children?: React.ReactNode;
   style?: StyleProp<TextStyle>;

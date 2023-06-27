@@ -22,11 +22,15 @@ export const en = {
     title: 'Let’s you in',
     continueWith: 'Continue with {{social}}',
     or: 'or',
-    remember: 'Remember me',
     signIn: 'Sign in with password',
     forgot: 'Forgot the password?',
-    continueOther: 'or continue with',
     notAccount: 'Don’t have an account?',
     signUp: 'Sign up',
+  },
+  signIn: {
+    title: 'Login to your Account',
+    continueOther: 'or continue with',
+    signIn: 'Sign in',
+    remember: 'Remember me',
   },
 };

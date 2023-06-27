@@ -2,21 +2,8 @@ import {Colors, scaler, Spacing} from '@themes';
 import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
-  scroll: {
-    paddingHorizontal: Spacing.width24,
-    paddingTop: Spacing.height12,
-    paddingBottom: Spacing.height20,
-  },
-  viewLogin: {
-    rowGap: Spacing.height24,
-    marginTop: Spacing.height54,
-    marginBottom: Spacing.height76,
-  },
-  viewLine: {
-    rowGap: Spacing.height30,
-  },
-  line: {
-    flex: 1,
+  container: {
+    justifyContent: 'space-between',
   },
   buttonSocial: {
     backgroundColor: Colors.white,
@@ -28,8 +15,11 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  btnLNG: {
-    alignSelf: 'flex-end',
-    paddingLeft: scaler(10),
+  body: {
+    justifyContent: 'center',
+    flex: 1,
+  },
+  checkbox: {
+    justifyContent: 'center',
   },
 });
