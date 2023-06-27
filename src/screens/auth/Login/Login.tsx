@@ -5,6 +5,7 @@ import {
   AppText,
   AppTouchable,
   LineView,
+  Link,
   RowView,
 } from '@components';
 import {IButton} from '@interfaces';
@@ -39,7 +40,7 @@ export const Login = () => {
   ];
 
   return (
-    <AppScreen>
+    <AppScreen style={styles.container}>
       <View />
       <View>
         <AppText size={FontSize.Font48} font={Fonts.fontWeight700} center>
@@ -71,9 +72,7 @@ export const Login = () => {
       </View>
       <RowView gap={Spacing.width8} center>
         <AppText>{t('login.notAccount')}</AppText>
-        <AppTouchable>
-          <AppText color={Colors.primary}>{t('login.signUp')}</AppText>
-        </AppTouchable>
+        <Link>{t('login.signUp')}</Link>
       </RowView>
     </AppScreen>
   );

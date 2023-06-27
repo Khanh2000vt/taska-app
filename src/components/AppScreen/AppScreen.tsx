@@ -25,10 +25,14 @@ export const AppScreen = ({
       style={[
         styles.container,
         {paddingHorizontal: horizontal, paddingBottom: bottom, paddingTop: top},
-        style,
       ]}>
       <HeaderAppScreen header={header} padding={padding} />
-      <BodyAppScreen type={type} children={children} flatList={flatList} />
+      <BodyAppScreen
+        style={style}
+        type={type}
+        children={children}
+        flatList={flatList}
+      />
     </View>
   );
 };
@@ -41,11 +45,15 @@ const BodyAppScreen = ({
 }: SwitchScreenProps) => {
   switch (type) {
     case 'view':
-      return <ViewScreen>{children}</ViewScreen>;
+      return <ViewScreen style={style}>{children}</ViewScreen>;
     case 'scroll-view':
-      return <ScrollViewScreen>{children}</ScrollViewScreen>;
+      return <ScrollViewScreen style={style}>{children}</ScrollViewScreen>;
     case 'flat-list':
-      return <FlatListScreen flatList={flatList}>{children}</FlatListScreen>;
+      return (
+        <FlatListScreen style={style} flatList={flatList}>
+          {children}
+        </FlatListScreen>
+      );
     default:
       return null;
   }

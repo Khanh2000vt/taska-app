@@ -5,15 +5,15 @@ import {AppText} from '@components/AppText';
 import {Colors} from '@themes';
 
 type Props = {
-  text: string;
+  children: string;
   color?: ColorValue;
-  onPress: () => void;
+  onPress?: () => void;
 };
 
-export const Link = ({text, color, onPress}: Props) => {
+export const Link = ({children, color, onPress}: Props) => {
   return (
     <AppTouchable onPress={onPress}>
-      <AppText color={color || Colors.primary}>{text}</AppText>
+      <AppText color={color || Colors.primary}>{children}</AppText>
     </AppTouchable>
   );
 };
