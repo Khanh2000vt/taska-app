@@ -7,6 +7,16 @@ export const en = {
   common: {
     email: 'Email',
     password: 'Password',
+    next: 'Next',
+    skip: 'Skip',
+  },
+  intro: {
+    title: [
+      'Organize Your Tasks & Projects Easily',
+      'Always Connect with Team Anytime Anywhere',
+      'Everything You Can Do in the App',
+    ],
+    body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
   auth: {
     login: {
