@@ -1,7 +1,13 @@
 import {IMargin} from '@interfaces';
 import {Colors, scaler} from '@themes';
 import React from 'react';
-import {ColorValue, StyleProp, View, ViewStyle} from 'react-native';
+import {
+  ColorValue,
+  DimensionValue,
+  StyleProp,
+  View,
+  ViewStyle,
+} from 'react-native';
 
 type Props = {
   direction?: 'vertical' | 'horizontal';
@@ -21,14 +27,17 @@ export const LineView = ({
   mv = undefined,
   m = undefined,
 }: Props & IMargin) => {
-  const size =
+  const size: {
+    height?: DimensionValue;
+    width?: DimensionValue;
+  } =
     direction === 'horizontal'
       ? {
           height: scaler(1),
-          width: '100%',
+          // width: '100%',
         }
       : {
-          height: '100%',
+          // height: '100%',
           width: scaler(1),
         };
 
@@ -38,5 +47,7 @@ export const LineView = ({
     marginRight: mr || mh || m,
     marginBottom: mb || mv || m,
   };
-  return <View style={[{backgroundColor: color}, size, margin, style]} />;
+  return (
+    <View style={[{backgroundColor: color, flex: 1}, size, margin, style]} />
+  );
 };

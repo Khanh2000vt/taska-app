@@ -1,135 +1,80 @@
 import {Svgs} from '@assets';
 import {
   AppButton,
-  AppCheckBox,
-  AppInputFormik,
-  AppModal,
+  AppScreen,
   AppText,
   AppTouchable,
-  Block,
-  ItemOption,
   LineView,
   RowView,
 } from '@components';
-import {Colors, dimensions, Fonts, FontSize, scaler, Spacing} from '@themes';
-import {SignInSchema} from '@validates';
-import {Formik} from 'formik';
+import {IButton} from '@interfaces';
+import {Colors, Fonts, FontSize, scaler, Spacing} from '@themes';
 import React from 'react';
-import {View} from 'react-native';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {Text, View} from 'react-native';
 import {LoginFunctionHook} from './Login.hook';
 import {styles} from './Login.style';
 
 export const Login = () => {
-  const {
-    initialValues,
-    handleLogin,
-    handleRememberMe,
-    // listLoginSocial,
-    rememberMe,
-    listLanguage,
-    refModal,
-    handlePressLanguage,
-    t,
-  } = LoginFunctionHook();
+  const {t} = LoginFunctionHook();
+
+  const listLoginSocial: IButton[] = [
+    {
+      id: 1,
+      label: 'Facebook',
+      onPress: () => {},
+      icon: Svgs.Facebook,
+    },
+    {
+      id: 2,
+      label: 'Google',
+      onPress: () => {},
+      icon: Svgs.Google,
+    },
+    {
+      id: 3,
+      label: 'Apple',
+      onPress: () => {},
+      icon: Svgs.Apple,
+    },
+  ];
 
   return (
-    <Block block color={Colors.white}>
-      <SafeAreaView edges={['top', 'bottom']}>
-        <KeyboardAwareScrollView
-          keyboardShouldPersistTaps="handled"
-          contentContainerStyle={styles.scroll}
-          bounces={false}>
-          <AppTouchable style={styles.btnLNG} onPress={handlePressLanguage}>
-            <AppText>LNG</AppText>
-          </AppTouchable>
-          <AppText size={FontSize.Font48} font={Fonts.fontWeight700}>
-            {t('auth.login.title')}
+    <AppScreen>
+      <View />
+      <View>
+        <AppText size={FontSize.Font48} font={Fonts.fontWeight700} center>
+          {t('login.title')}
+        </AppText>
+        <View style={styles.viewButton}>
+          {listLoginSocial.map(item => {
+            return (
+              <AppButton
+                outline
+                style={styles.button}
+                labelStyle={styles.textButton}
+                Icon={item.icon}
+                label={t('login.continueWith', {social: item.label})}
+                key={item.id}
+              />
+            );
+          })}
+        </View>
+        <RowView gap={scaler(16)} mv={Spacing.height50} center>
+          <LineView />
+          <AppText size={FontSize.Font16} color={Colors.gray.gray40}>
+            {t('login.or')}
           </AppText>
-          <Formik
-            initialValues={initialValues}
-            onSubmit={handleLogin}
-            validationSchema={SignInSchema}>
-            {({handleSubmit, values}) => (
-              <>
-                <View style={styles.viewLogin}>
-                  <AppInputFormik
-                    labelFormik="email"
-                    placeholder={t('common.email') as string}
-                    // IconLeft={Svgs.EmailInput}
-                  />
-                  <AppInputFormik
-                    labelFormik="password"
-                    placeholder={t('common.password') as string}
-                    // IconLeft={Svgs.LockInput}
-                    password
-                  />
-                  <AppCheckBox
-                    checked={rememberMe}
-                    onChangeValue={handleRememberMe}
-                    label={t('auth.login.remember')}
-                    style={{justifyContent: 'center'}}
-                  />
-                  <AppButton
-                    label={t('auth.login.signIn')}
-                    onPress={handleSubmit}
-                    disabled={!(!!values.email && !!values.password)}
-                  />
-                  <AppTouchable>
-                    <AppText
-                      style={{textAlign: 'center'}}
-                      size={FontSize.Font16}
-                      color={Colors.primary}>
-                      {t('auth.login.forgot')}
-                    </AppText>
-                  </AppTouchable>
-                </View>
-                <View style={styles.viewLine}>
-                  <RowView gap={Spacing.width16} center>
-                    <LineView style={styles.line} />
-                    <AppText size={FontSize.Font18} color={Colors.gray.gray40}>
-                      {t('auth.login.continueOther')}
-                    </AppText>
-                    <LineView style={styles.line} />
-                  </RowView>
-                  <RowView gap={Spacing.width20} center>
-                    {/* {listLoginSocial.map(item => {
-                      return (
-                        <AppTouchable key={item.id} style={styles.buttonSocial}>
-                          <item.icon />
-                        </AppTouchable>
-                      );
-                    })} */}
-                  </RowView>
-                </View>
-                <RowView gap={Spacing.width8} center mt={scaler(100)}>
-                  <AppText>{t('auth.login.notAccount')}</AppText>
-                  <AppTouchable>
-                    <AppText color={Colors.primary}>
-                      {t('auth.login.signUp')}
-                    </AppText>
-                  </AppTouchable>
-                </RowView>
-              </>
-            )}
-          </Formik>
-        </KeyboardAwareScrollView>
-      </SafeAreaView>
-      <AppModal
-        ref={refModal}
-        modalSize={{height: scaler(200), width: dimensions.width}}
-        position="bottom">
-        {listLanguage.map(option => {
-          return (
-            <ItemOption
-              label={option.label}
-              onPress={option.onPress}
-              key={option.id}
-            />
-          );
-        })}
-      </AppModal>
-    </Block>
+          <LineView />
+        </RowView>
+
+        <AppButton label={t('login.signIn')} />
+      </View>
+      <RowView gap={Spacing.width8} center>
+        <AppText>{t('login.notAccount')}</AppText>
+        <AppTouchable>
+          <AppText color={Colors.primary}>{t('login.signUp')}</AppText>
+        </AppTouchable>
+      </RowView>
+    </AppScreen>
   );
 };

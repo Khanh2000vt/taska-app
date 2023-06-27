@@ -18,15 +18,15 @@ export const en = {
     ],
     body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
-  auth: {
-    login: {
-      title: 'Let’s you in',
-      remember: 'Remember me',
-      signIn: 'Sign in',
-      forgot: 'Forgot the password?',
-      continueOther: 'or continue with',
-      notAccount: 'Don’t have an account?',
-      signUp: 'Sign up',
-    },
+  login: {
+    title: 'Let’s you in',
+    continueWith: 'Continue with {{social}}',
+    or: 'or',
+    remember: 'Remember me',
+    signIn: 'Sign in with password',
+    forgot: 'Forgot the password?',
+    continueOther: 'or continue with',
+    notAccount: 'Don’t have an account?',
+    signUp: 'Sign up',
   },
 };

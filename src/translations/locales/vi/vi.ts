@@ -18,15 +18,15 @@ export const vi = {
     ],
     body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
-  auth: {
-    login: {
-      title: 'Cho phép bạn tham gia',
-      remember: 'Ghi nhớ tôi',
-      signIn: 'Đăng nhập',
-      forgot: 'Quên mật khẩu?',
-      continueOther: 'hoặc tiếp tục với',
-      notAccount: 'Bạn chưa có tài khoản?',
-      signUp: 'Đăng ký',
-    },
+  login: {
+    title: 'Cho phép bạn tham gia',
+    continueWith: 'Tiếp tục với {{social}}',
+    or: 'hoặc',
+    remember: 'Ghi nhớ tôi',
+    signIn: 'Đăng nhập bằng mật khẩu',
+    forgot: 'Quên mật khẩu?',
+    continueOther: 'hoặc tiếp tục với',
+    notAccount: 'Bạn chưa có tài khoản?',
+    signUp: 'Đăng ký',
   },
 };

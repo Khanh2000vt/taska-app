@@ -18,4 +18,5 @@ export type IButton = {
   label: string;
   onPress: () => void;
   secondary?: boolean;
+  icon?: Element;
 };
