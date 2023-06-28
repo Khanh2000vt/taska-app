@@ -39,4 +39,7 @@ export const en = {
     signIn: 'Sign in',
     signUp: 'Sign up',
   },
+  fillProfile: {
+    header: 'Fill Your Profile',
+  },
 };

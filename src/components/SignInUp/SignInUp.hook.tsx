@@ -53,9 +53,13 @@ export const SignInUpHook = (type: EScreenSign) => {
   //   } catch (e) {}
   // };
 
-  const handleLogin = (values: IFormikSign) => {
+  const handleSign = (values: IFormikSign) => {
     console.log('test: ');
-    dispatch(setUser({token: 'abc', user: {}}));
+    if (type === EScreenSign.SIGN_IN) {
+      dispatch(setUser({token: 'abc', user: {}}));
+    } else {
+      navigation.navigate(ROUTE_AUTH.FILL_PROFILE);
+    }
   };
 
   const handleRememberMe = (checked: boolean) => {
@@ -75,7 +79,7 @@ export const SignInUpHook = (type: EScreenSign) => {
   return {
     t,
     initialValues,
-    handleLogin,
+    handleSign,
     handleRememberMe,
     listLoginSocial,
     rememberMe,

@@ -25,7 +25,7 @@ export const SignInUp = ({type}: SignUpProps) => {
   const {
     t,
     initialValues,
-    handleLogin,
+    handleSign,
     handleRememberMe,
     listLoginSocial,
     rememberMe,
@@ -40,7 +40,7 @@ export const SignInUp = ({type}: SignUpProps) => {
         </AppText>
         <Formik
           initialValues={initialValues}
-          onSubmit={handleLogin}
+          onSubmit={handleSign}
           validationSchema={SignInSchema}>
           {({handleSubmit, values}) => (
             <>
