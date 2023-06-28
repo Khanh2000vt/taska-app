@@ -1,4 +1,4 @@
-import {Intro, Login, SignInPassword} from './auth';
+import {Intro, Login, SignInPassword, SignUp} from './auth';
 import {Home} from './main';
 
 const screens = {
@@ -6,5 +6,6 @@ const screens = {
   Login,
   Home,
   SignInPassword,
+  SignUp,
 };
 export {screens};
