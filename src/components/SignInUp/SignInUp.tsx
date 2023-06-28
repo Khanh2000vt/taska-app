@@ -63,7 +63,11 @@ export const SignInUp = ({type}: SignUpProps) => {
                   style={styles.checkbox}
                 />
                 <AppButton
-                  label={t('signIn.signIn')}
+                  label={
+                    type === EScreenSign.SIGN_IN
+                      ? t('signIn.signIn')
+                      : t('signUp.signUp')
+                  }
                   onPress={handleSubmit}
                   disabled={!(!!values.email && !!values.password)}
                   shadow
