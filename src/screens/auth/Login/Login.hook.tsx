@@ -33,9 +33,14 @@ export const LoginFunctionHook = () => {
   const handleSignInPassword = () => {
     navigation.navigate(ROUTE_AUTH.SIGN_IN_PASSWORD);
   };
+
+  const handleSignUp = () => {
+    navigation.navigate(ROUTE_AUTH.SIGN_UP);
+  };
   return {
     t,
     listLoginSocial,
     handleSignInPassword,
+    handleSignUp,
   };
 };
