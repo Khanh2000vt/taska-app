@@ -1,15 +1,26 @@
 import {Svgs} from '@assets';
-import {IFormikLogin, ILoginSocial} from '@interfaces';
+import {EScreenSign} from '@constants';
+import {IFormikSign, ILoginSocial, INavigateAuth} from '@interfaces';
+import {AuthStackParamList, ROUTE_AUTH} from '@navigation';
+import {useNavigation} from '@react-navigation/native';
 import {setUser} from '@redux';
 import {useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {useDispatch} from 'react-redux';
 
-export const SignInUpHook = () => {
+export const SignInUpHook = (type: EScreenSign) => {
   const {t} = useTranslation();
   const dispatch = useDispatch();
 
-  const initialValues: IFormikLogin = {
+  const navigation =
+    useNavigation<
+      INavigateAuth<
+        ROUTE_AUTH.SIGN_IN_PASSWORD | ROUTE_AUTH.SIGN_UP,
+        'navigation'
+      >
+    >();
+
+  const initialValues: IFormikSign = {
     email: '',
     password: '',
   };
@@ -42,7 +53,7 @@ export const SignInUpHook = () => {
   //   } catch (e) {}
   // };
 
-  const handleLogin = (values: IFormikLogin) => {
+  const handleLogin = (values: IFormikSign) => {
     console.log('test: ');
     dispatch(setUser({token: 'abc', user: {}}));
   };
@@ -51,12 +62,24 @@ export const SignInUpHook = () => {
     setRememberMe(checked);
   };
 
+  const handleForgot = () => {};
+
+  const handleChangeSign = () => {
+    navigation.replace(
+      type === EScreenSign.SIGN_IN
+        ? ROUTE_AUTH.SIGN_UP
+        : ROUTE_AUTH.SIGN_IN_PASSWORD,
+    );
+  };
+
   return {
+    t,
     initialValues,
     handleLogin,
     handleRememberMe,
     listLoginSocial,
     rememberMe,
-    t,
+    handleForgot,
+    handleChangeSign,
   };
 };

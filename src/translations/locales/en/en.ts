@@ -33,4 +33,9 @@ export const en = {
     signIn: 'Sign in',
     remember: 'Remember me',
   },
+  signUp: {
+    title: 'Create your Account',
+    haveAccount: 'Already have an account?',
+    signIn: 'Sign in',
+  },
 };

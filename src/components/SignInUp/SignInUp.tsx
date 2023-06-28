@@ -11,6 +11,7 @@ import {
   Link,
   RowView,
 } from '@components';
+import {EScreenSign} from '@constants';
 import {Colors, Fonts, FontSize, scaler, Spacing} from '@themes';
 import {SignInSchema} from '@validates';
 import {Formik} from 'formik';
@@ -22,18 +23,20 @@ import {styles} from './SignInUp.style';
 
 export const SignInUp = ({type}: SignUpProps) => {
   const {
+    t,
     initialValues,
     handleLogin,
     handleRememberMe,
     listLoginSocial,
     rememberMe,
-    t,
-  } = SignInUpHook();
+    handleForgot,
+    handleChangeSign,
+  } = SignInUpHook(type);
   return (
     <AppScreen style={styles.container}>
       <View style={styles.body}>
         <AppText size={FontSize.Font48} font={Fonts.fontWeight700}>
-          {t('signIn.title')}
+          {type === EScreenSign.SIGN_IN ? t('signIn.title') : t('signUp.title')}
         </AppText>
         <Formik
           initialValues={initialValues}
@@ -65,13 +68,16 @@ export const SignInUp = ({type}: SignUpProps) => {
                   disabled={!(!!values.email && !!values.password)}
                   shadow
                 />
-                <Link
-                  text={{
-                    center: true,
-                    size: FontSize.Font16,
-                  }}>
-                  {t('login.forgot')}
-                </Link>
+                {type === EScreenSign.SIGN_IN && (
+                  <Link
+                    onPress={handleForgot}
+                    text={{
+                      center: true,
+                      size: FontSize.Font16,
+                    }}>
+                    {t('login.forgot')}
+                  </Link>
+                )}
               </ColumnView>
             </>
           )}
@@ -96,10 +102,16 @@ export const SignInUp = ({type}: SignUpProps) => {
         </RowView>
 
         <RowView gap={Spacing.width8} center mt={scaler(52)}>
-          <AppText>{t('login.notAccount')}</AppText>
-          <AppTouchable>
-            <AppText color={Colors.primary}>{t('login.signUp')}</AppText>
-          </AppTouchable>
+          <AppText>
+            {type === EScreenSign.SIGN_IN
+              ? t('login.notAccount')
+              : t('signUp.haveAccount')}
+          </AppText>
+          <Link onPress={handleChangeSign}>
+            {type === EScreenSign.SIGN_IN
+              ? t('login.signUp')
+              : t('signUp.signIn')}
+          </Link>
         </RowView>
       </View>
     </AppScreen>

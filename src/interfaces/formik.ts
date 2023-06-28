@@ -1,4 +1,4 @@
-export type IFormikLogin = {
+export type IFormikSign = {
   email: string;
   password: string;
 };
