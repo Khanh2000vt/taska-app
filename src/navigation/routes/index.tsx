@@ -6,6 +6,8 @@ export enum ROUTE_AUTH {
   INTRO = 'INTRO',
   LOGIN = 'LOGIN',
   SIGN_IN_PASSWORD = 'SIGN_IN_PASSWORD',
+  SIGN_UP = 'SIGN_UP',
+  FILL_PROFILE = 'FILL_PROFILE',
 }
 
 export enum ROUTE_MAIN {

@@ -13,7 +13,8 @@ import {LoginFunctionHook} from './Login.hook';
 import {styles} from './Login.style';
 
 export const Login = () => {
-  const {t, listLoginSocial, handleSignInPassword} = LoginFunctionHook();
+  const {t, listLoginSocial, handleSignInPassword, handleSignUp} =
+    LoginFunctionHook();
 
   return (
     <AppScreen style={styles.container}>
@@ -48,7 +49,7 @@ export const Login = () => {
       </View>
       <RowView gap={Spacing.width8} center>
         <AppText>{t('login.notAccount')}</AppText>
-        <Link>{t('login.signUp')}</Link>
+        <Link onPress={handleSignUp}>{t('login.signUp')}</Link>
       </RowView>
     </AppScreen>
   );

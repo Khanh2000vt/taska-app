@@ -1,18 +1,26 @@
 import {Svgs} from '@assets';
-import {ASYNC_STORAGE, LANGUAGE} from '@constants';
-import {IFormikLogin, ILoginSocial, IOption} from '@interfaces';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import {EScreenSign} from '@constants';
+import {IFormikSign, ILoginSocial, INavigateAuth} from '@interfaces';
+import {AuthStackParamList, ROUTE_AUTH} from '@navigation';
+import {useNavigation} from '@react-navigation/native';
 import {setUser} from '@redux';
-import i18next from 'i18next';
-import {useRef, useState} from 'react';
+import {useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {useDispatch} from 'react-redux';
 
-export const SignInPasswordHook = () => {
+export const SignInUpHook = (type: EScreenSign) => {
   const {t} = useTranslation();
   const dispatch = useDispatch();
 
-  const initialValues: IFormikLogin = {
+  const navigation =
+    useNavigation<
+      INavigateAuth<
+        ROUTE_AUTH.SIGN_IN_PASSWORD | ROUTE_AUTH.SIGN_UP,
+        'navigation'
+      >
+    >();
+
+  const initialValues: IFormikSign = {
     email: '',
     password: '',
   };
@@ -45,21 +53,37 @@ export const SignInPasswordHook = () => {
   //   } catch (e) {}
   // };
 
-  const handleLogin = (values: IFormikLogin) => {
+  const handleSign = (values: IFormikSign) => {
     console.log('test: ');
-    dispatch(setUser({token: 'abc', user: {}}));
+    if (type === EScreenSign.SIGN_IN) {
+      dispatch(setUser({token: 'abc', user: {}}));
+    } else {
+      navigation.navigate(ROUTE_AUTH.FILL_PROFILE);
+    }
   };
 
   const handleRememberMe = (checked: boolean) => {
     setRememberMe(checked);
   };
 
+  const handleForgot = () => {};
+
+  const handleChangeSign = () => {
+    navigation.replace(
+      type === EScreenSign.SIGN_IN
+        ? ROUTE_AUTH.SIGN_UP
+        : ROUTE_AUTH.SIGN_IN_PASSWORD,
+    );
+  };
+
   return {
+    t,
     initialValues,
-    handleLogin,
+    handleSign,
     handleRememberMe,
     listLoginSocial,
     rememberMe,
-    t,
+    handleForgot,
+    handleChangeSign,
   };
 };

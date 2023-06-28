@@ -21,14 +21,10 @@ export const AppScreen = ({
   padding,
 }: AppScreenProps) => {
   return (
-    <View
-      style={[
-        styles.container,
-        {paddingHorizontal: horizontal, paddingBottom: bottom, paddingTop: top},
-      ]}>
+    <View style={[styles.container, {paddingBottom: bottom, paddingTop: top}]}>
       <HeaderAppScreen header={header} padding={padding} />
       <BodyAppScreen
-        style={style}
+        style={[style, {paddingHorizontal: horizontal}]}
         type={type}
         children={children}
         flatList={flatList}

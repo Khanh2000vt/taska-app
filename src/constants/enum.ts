@@ -12,3 +12,8 @@ export enum PHOTO {
   CAMERA,
   LIBRARY,
 }
+
+export enum EScreenSign {
+  SIGN_IN,
+  SIGN_UP,
+}

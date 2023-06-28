@@ -28,6 +28,7 @@ export type AuthStackParamList = {
   LOGIN: undefined;
   SIGN_IN_PASSWORD: undefined;
   SIGN_UP: undefined;
+  FILL_PROFILE: undefined;
   FORGOT_PASSWORD: undefined;
   VERIFICATION: undefined;
   NEW_PASSWORD: {otp: string};
