@@ -1,6 +1,7 @@
+import {SignInUp} from '@components';
+import {EScreenSign} from '@constants';
 import React from 'react';
-import {EScreenType, SignInUp} from '../SignInUp';
 
 export const SignInPassword = () => {
-  return <SignInUp type={EScreenType.SIGN_IN} />;
+  return <SignInUp type={EScreenSign.SIGN_IN} />;
 };
