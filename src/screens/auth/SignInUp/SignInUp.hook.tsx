@@ -1,14 +1,11 @@
 import {Svgs} from '@assets';
-import {ASYNC_STORAGE, LANGUAGE} from '@constants';
-import {IFormikLogin, ILoginSocial, IOption} from '@interfaces';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import {IFormikLogin, ILoginSocial} from '@interfaces';
 import {setUser} from '@redux';
-import i18next from 'i18next';
-import {useRef, useState} from 'react';
+import {useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {useDispatch} from 'react-redux';
 
-export const SignInPasswordHook = () => {
+export const SignInUpHook = () => {
   const {t} = useTranslation();
   const dispatch = useDispatch();
 
