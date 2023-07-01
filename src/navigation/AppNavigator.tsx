@@ -1,6 +1,7 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {RootState} from '@redux';
+import {screens} from '@screens';
 import React from 'react';
 // import SplashScreen from 'react-native-splash-screen';
 import {useSelector} from 'react-redux';
@@ -22,14 +23,14 @@ const NavigationApp = React.forwardRef((props, ref: any) => {
       ref={ref}
       //  onReady={() => SplashScreen.hide()}
     >
-      {renderStackApp()}
+      {/* {renderStackApp()} */}
       {/* Thay thế component để build UI */}
-      {/* <MainStack.Navigator
+      <MainStack.Navigator
         screenOptions={{
           headerShown: false,
         }}>
-        <MainStack.Screen name="A" component={screens.AllReviews} />
-      </MainStack.Navigator> */}
+        <MainStack.Screen name="A" component={screens.FillProfile} />
+      </MainStack.Navigator>
     </NavigationContainer>
   );
 });

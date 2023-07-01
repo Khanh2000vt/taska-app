@@ -14,3 +14,4 @@ export * from './AppSwitch';
 export * from './ModalRequestPermission';
 export * from './AppScreen';
 export * from './SignInUp';
+export * from './AppPickerFormik';
