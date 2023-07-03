@@ -4,6 +4,7 @@ import Google from './google.svg';
 import Apple from './apple.svg';
 import CheckBox from './check-box.svg';
 import TickSquare from './tick-square.svg';
+import EditSquare from './edit-square.svg';
 
 const SvgFile = {
   ArrowLeft,
@@ -12,6 +13,7 @@ const SvgFile = {
   Apple,
   CheckBox,
   TickSquare,
+  EditSquare,
 };
 
 export {SvgFile};
