@@ -3,7 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {RootState} from '@redux';
 import {screens} from '@screens';
 import React from 'react';
-// import SplashScreen from 'react-native-splash-screen';
+import SplashScreen from 'react-native-splash-screen';
 import {useSelector} from 'react-redux';
 import {Stack} from './stack';
 const MainStack = createStackNavigator();
@@ -19,10 +19,7 @@ const NavigationApp = React.forwardRef((props, ref: any) => {
     }
   };
   return (
-    <NavigationContainer
-      ref={ref}
-      //  onReady={() => SplashScreen.hide()}
-    >
+    <NavigationContainer ref={ref} onReady={() => SplashScreen.hide()}>
       {/* {renderStackApp()} */}
       {/* Thay thế component để build UI */}
       <MainStack.Navigator

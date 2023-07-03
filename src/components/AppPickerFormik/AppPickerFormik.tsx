@@ -1,20 +1,31 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {AppTouchable} from '@components/AppTouchable';
 import {AppText} from '@components/AppText';
 import {Svgs} from '@assets';
 import {Colors, Fonts, scaler} from '@themes';
+import {AppBottomSheet} from '@components/AppBottomSheet';
 
 export const AppPickerFormik = () => {
+  const [visible, setVisible] = useState<boolean>(false);
   return (
-    <View>
-      <AppTouchable style={styles.button}>
-        <AppText color={Colors.gray.gray70} font={Fonts.fontWeight400}>
-          Email
-        </AppText>
-        <Svgs.EmailInput />
-      </AppTouchable>
-    </View>
+    <>
+      <View>
+        <AppTouchable
+          style={styles.button}
+          onPress={() => setVisible(!visible)}>
+          <AppText color={Colors.gray.gray70} font={Fonts.fontWeight400}>
+            Email
+          </AppText>
+          <Svgs.EmailInput />
+        </AppTouchable>
+      </View>
+      <AppBottomSheet
+        onBackdropPress={() => setVisible(!visible)}
+        visible={visible}>
+        <View />
+      </AppBottomSheet>
+    </>
   );
 };
 
