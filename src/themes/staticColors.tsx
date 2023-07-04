@@ -16,6 +16,7 @@ export const Colors = {
     gray40: '#616161',
     gray50: '#424242',
     gray60: '#E0E0E0',
+    gray70: '#9E9E9E',
   },
 };
 

@@ -8,7 +8,7 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
-    "pod": "cd ios && pod install && cd ..",
+    "pod": "cd ios && pod install && cd .. && npx react-native setup-ios-permissions && cd ios && pod install && cd ..",
     "xcode": "xed -b ios"
   },
   "reactNativePermissionsIOS": [
