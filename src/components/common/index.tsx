@@ -4,3 +4,4 @@ export * from './ItemOption';
 export * from './ColumnView';
 export * from './Link';
 export * from './AvatarUser';
+export * from './ImagePickerComponent';
