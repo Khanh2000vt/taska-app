@@ -1,9 +1,8 @@
-import {DefaultTFuncReturn} from 'i18next';
 import {StyleProp, TextInputProps, TextStyle, ViewStyle} from 'react-native';
 import {SvgProps} from 'react-native-svg';
 
 export interface PropsAppInputFormik extends TextInputProps {
-  label?: string | DefaultTFuncReturn;
+  label?: string;
   labelFormik: string;
   styleContainer?: StyleProp<ViewStyle>;
   styleLabel?: StyleProp<TextStyle>;
