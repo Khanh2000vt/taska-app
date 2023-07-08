@@ -12,6 +12,7 @@ export const checkPhotoLibrary = async (callback?: () => void) => {
   if (Platform.OS === 'ios') {
     try {
       const checkPermission = await check(PERMISSIONS.IOS.PHOTO_LIBRARY);
+      console.log('checkPermission: ', checkPermission);
       if (checkPermission === RESULTS.BLOCKED) {
         callback?.();
         return false;

@@ -20,11 +20,11 @@ export const AppPickerFormik = () => {
           <Svgs.EmailInput />
         </AppTouchable>
       </View>
-      <AppBottomSheet
+      {/* <AppBottomSheet
         onBackdropPress={() => setVisible(!visible)}
         visible={visible}>
         <View />
-      </AppBottomSheet>
+      </AppBottomSheet> */}
     </>
   );
 };

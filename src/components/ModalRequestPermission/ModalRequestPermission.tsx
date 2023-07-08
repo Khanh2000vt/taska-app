@@ -12,11 +12,15 @@ export type ModalPermission = {
   close: () => void;
 };
 
-type Props = {};
+type Props = {
+  onCallBack?: () => void;
+};
 
 export const ModalRequestPermission = forwardRef<ModalPermission, Props>(
   (props, ref) => {
-    const {refModal, listButton, open, close} = ModalRequestPermissionHook();
+    const {onCallBack = () => {}} = props;
+    const {refModal, listButton, open, close} =
+      ModalRequestPermissionHook(onCallBack);
 
     useImperativeHandle(
       ref,

@@ -3,6 +3,7 @@ import {
   AppBottomSheetModalRef,
   AppButton,
   AppInputFormik,
+  AppModal,
   AppPickerFormik,
   AppScreen,
   AvatarUser,
@@ -47,7 +48,12 @@ export const FillProfile = () => {
         </Formik>
       </AppScreen>
       <AppBottomSheetModal ref={refSheetModal} snapPoints={['25%']}>
-        <ImagePickerComponent />
+        <ImagePickerComponent
+          onOpenSettingsPermission={
+            () => {}
+            // refSheetModal.current?.snapToIndex(-1)
+          }
+        />
       </AppBottomSheetModal>
     </>
   );

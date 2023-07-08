@@ -2,7 +2,7 @@ import {Colors} from '@themes';
 import {useRef} from 'react';
 import {openSettings} from 'react-native-permissions';
 
-export const ModalRequestPermissionHook = () => {
+export const ModalRequestPermissionHook = (onCallBack: () => void) => {
   const refModal = useRef<any>(null);
 
   const open = () => {
@@ -35,8 +35,11 @@ export const ModalRequestPermissionHook = () => {
   };
 
   const handleGoToSettings = () => {
-    openSettings().then();
     handleCancel();
+    setTimeout(() => {
+      openSettings().then();
+      onCallBack();
+    }, 100);
   };
   return {listButton, refModal, open, close};
 };
