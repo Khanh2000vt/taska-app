@@ -5,6 +5,7 @@ import Apple from './apple.svg';
 import CheckBox from './check-box.svg';
 import TickSquare from './tick-square.svg';
 import EditSquare from './edit-square.svg';
+import ArrowDown from './arrow-down.svg';
 
 const SvgFile = {
   ArrowLeft,
@@ -14,6 +15,7 @@ const SvgFile = {
   CheckBox,
   TickSquare,
   EditSquare,
+  ArrowDown,
 };
 
 export {SvgFile};

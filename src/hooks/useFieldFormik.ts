@@ -1,27 +1,6 @@
 import {useField} from 'formik';
 import {useRef} from 'react';
 
-// interface IHelper {
-//   setValue: (value: any, shouldValidate?: boolean | undefined) => void;
-//   setTouched: (value: boolean, shouldValidate?: boolean | undefined) => void;
-//   setError: (value: string | undefined) => void;
-// }
-
-// interface useFieldProps extends IHelper {
-//   helper: IHelper | null;
-// }
-
-// const initHelper = {
-//   setValue: () => {},
-//   setTouched: () => {},
-//   setError: () => {},
-// };
-
-// const initRef = {
-//   ...initHelper,
-//   helper: null,
-// };
-
 export const useFieldFormik = (name: string) => {
   const [field, meta, helper] = useField(name);
 

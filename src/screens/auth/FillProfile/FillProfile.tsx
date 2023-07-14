@@ -3,6 +3,7 @@ import {
   AppBottomSheetModalRef,
   AppButton,
   AppInputFormik,
+  AppInputPhone,
   AppModal,
   AppPickerFormik,
   AppScreen,
@@ -40,8 +41,13 @@ export const FillProfile = () => {
               />
               <AppInputFormik labelFormik="name" placeholder="Full Name" />
               <AppInputFormik labelFormik="user_name" placeholder="Username" />
-              <AppPickerFormik />
-              <AppPickerFormik />
+              <AppPickerFormik
+                labelFormik="date_of_birth"
+                label="Date of Birth"
+              />
+              <AppPickerFormik labelFormik="email" label="Email" />
+
+              <AppInputPhone />
               <AppButton label="Test" onPress={() => {}} />
             </ColumnView>
           )}

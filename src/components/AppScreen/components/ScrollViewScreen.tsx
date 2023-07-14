@@ -5,7 +5,7 @@ import {BodyScreenProps} from '../AppScreen.props';
 export const ScrollViewScreen = ({children, style}: BodyScreenProps) => {
   return (
     <KeyboardAwareScrollView
-      keyboardShouldPersistTaps="always"
+      keyboardShouldPersistTaps="never"
       bounces={false}
       style={[{flex: 1}, style]}>
       <>{children}</>
