@@ -7,7 +7,7 @@ export type IFormikFillProfile = {
   avatar: null | object;
   name: string;
   user_name: string;
-  date_of_birth: null | object;
+  date_of_birth: undefined | Date;
   email: string;
   phone: string | null;
   type: null | string;

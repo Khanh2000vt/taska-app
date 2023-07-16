@@ -8,7 +8,7 @@ export const FillProfileHook = () => {
     avatar: null,
     name: '',
     user_name: '',
-    date_of_birth: null,
+    date_of_birth: undefined,
     email: '',
     phone: '',
     type: null,

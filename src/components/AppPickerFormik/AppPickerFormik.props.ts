@@ -1,4 +1,5 @@
 export type AppPickerFormikProps = {
   label: string;
-  labelFormik: string;
+  value: string | null | undefined;
+  onPress?: () => void;
 };

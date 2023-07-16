@@ -1,35 +1,28 @@
 import {Svgs} from '@assets';
-import {AppModal} from '@components/AppModal';
 import {AppText} from '@components/AppText';
 import {AppTouchable} from '@components/AppTouchable';
-import {useFieldFormik} from '@hooks';
-import {Colors, dimensions, Fonts, scaler} from '@themes';
-import React, {useRef} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {Colors, Fonts, scaler} from '@themes';
+import React from 'react';
+import {StyleSheet} from 'react-native';
 import {AppPickerFormikProps} from './AppPickerFormik.props';
 
-export const AppPickerFormik = ({label, labelFormik}: AppPickerFormikProps) => {
-  const {value, setValue, error, touched} = useFieldFormik(labelFormik);
-  const refModal = useRef<any>(null);
+export const AppPickerFormik = ({
+  label,
+  value,
+  onPress,
+}: AppPickerFormikProps) => {
   return (
-    <View>
-      <View>
-        <AppTouchable
-          style={styles.button}
-          onPress={() => refModal.current?.open()}>
-          <AppText color={Colors.gray.gray70} font={Fonts.fontWeight400}>
-            {!!value ? value : label}
-          </AppText>
-          <Svgs.EmailInput />
-        </AppTouchable>
-      </View>
-      <AppModal
-        ref={refModal}
-        position="bottom"
-        modalSize={{height: scaler(200), width: dimensions.width}}>
-        <View />
-      </AppModal>
-    </View>
+    <AppTouchable style={styles.button} onPress={onPress}>
+      {!!value ? (
+        <AppText font={Fonts.fontWeight600}>{value}</AppText>
+      ) : (
+        <AppText color={Colors.gray.gray70} font={Fonts.fontWeight400}>
+          {label}
+        </AppText>
+      )}
+
+      <Svgs.EmailInput />
+    </AppTouchable>
   );
 };
 
