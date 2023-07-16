@@ -16,7 +16,7 @@ import FlashMessage from 'react-native-flash-message';
 import {getStatusBarHeight} from 'react-native-iphone-x-helper';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
-// import auth from '@react-native-firebase/auth';
+import auth from '@react-native-firebase/auth';
 
 initI18n();
 
@@ -24,10 +24,10 @@ const App = () => {
   const [initializing, setInitializing] = useState<boolean>(true);
   const [user, setUser] = useState<any | null>();
 
-  // useEffect(() => {
-  //   const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-  //   return subscriber; // unsubscribe on unmount
-  // }, []);
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber; // unsubscribe on unmount
+  }, []);
 
   useEffect(() => {
     // Được dùng để đưa các định dạng chữ về mặc định khi vào app.
