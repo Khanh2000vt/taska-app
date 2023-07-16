@@ -3,7 +3,7 @@ import {NavigationApp, NavigationUtils} from '@navigation';
 import {persistor, store} from '@redux/store';
 import {ThemeProvider} from '@themes';
 import {initI18n, loadLocaleLanguage} from '@translations';
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import {
   Platform,
   StatusBar,
@@ -16,10 +16,19 @@ import FlashMessage from 'react-native-flash-message';
 import {getStatusBarHeight} from 'react-native-iphone-x-helper';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
+// import auth from '@react-native-firebase/auth';
 
 initI18n();
 
 const App = () => {
+  const [initializing, setInitializing] = useState<boolean>(true);
+  const [user, setUser] = useState<any | null>();
+
+  // useEffect(() => {
+  //   const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+  //   return subscriber; // unsubscribe on unmount
+  // }, []);
+
   useEffect(() => {
     // Được dùng để đưa các định dạng chữ về mặc định khi vào app.
     // Tránh chữ trong app lấy các định dạng khác ở bên thứ 3.
@@ -37,6 +46,12 @@ const App = () => {
     //@ts-ignore
     View.defaultProps.allowFontScaling = false;
   }, []);
+
+  function onAuthStateChanged(user: any) {
+    setUser(user);
+    console.log('user: ', user);
+    if (initializing) setInitializing(false);
+  }
 
   const onBeforeLift = () => {
     loadLocaleLanguage();
