@@ -1,3 +1,4 @@
+import {ListCountry} from '@constants';
 import {IFormikFillProfile} from '@interfaces';
 import {useTranslation} from 'react-i18next';
 
@@ -11,6 +12,7 @@ export const FillProfileHook = () => {
     date_of_birth: undefined,
     email: '',
     phone: '',
+    countryPhone: ListCountry[0],
     type: null,
   };
   return {t, initValueFillProfile};

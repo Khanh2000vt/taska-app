@@ -73,7 +73,7 @@ export const FillProfile = () => {
                   label="Email"
                 />
 
-                <AppInputPhone />
+                <AppInputPhone labelCoding="countryPhone" labelPhone="phone" />
                 <AppButton label="Continue" onPress={() => {}} />
               </ColumnView>
               <DatePicker

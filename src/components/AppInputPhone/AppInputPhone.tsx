@@ -1,22 +1,52 @@
-import {StyleSheet, Text, TextInput, View} from 'react-native';
-import React, {useRef, useState} from 'react';
-import {AppTouchable} from '@components/AppTouchable';
 import {Svgs} from '@assets';
-import {Colors, Fonts, FontSize, scaler} from '@themes';
-import {
-  AppBottomSheetModal,
-  AppBottomSheetModalRef,
-} from '@components/AppBottomSheetModal';
-import {ImagePickerComponent} from '@components/common';
+import {AppModal} from '@components/AppModal';
+import {AppText} from '@components/AppText';
+import {AppTouchable} from '@components/AppTouchable';
+import {ImagePickerComponent, ItemOption} from '@components/common';
+import {HEIGHT_ITEM_OPTION, ListCountry} from '@constants';
+import {useFieldFormik} from '@hooks';
+import {Colors, dimensions, Fonts, FontSize, scaler, Spacing} from '@themes';
+import React, {useRef, useState} from 'react';
+import {FlatList, Image, StyleSheet, Text, TextInput, View} from 'react-native';
 
-export const AppInputPhone = () => {
+type Props = {
+  labelCoding: string;
+  labelPhone: string;
+};
+
+export const AppInputPhone = ({labelCoding, labelPhone}: Props) => {
+  const {value: valueCoding, setValue: setValueCoding} =
+    useFieldFormik(labelCoding);
+  const {value: valuePhone, setValue: setValuePhone} =
+    useFieldFormik(labelPhone);
   const [isFocus, setIsFocus] = useState<boolean>(false);
-  const [value, setValue] = useState<string>('');
-  const refSheetModal = useRef<AppBottomSheetModalRef>(null);
 
-  const showBtnDelete = isFocus && !!value?.length;
+  const refModal = useRef<any>(null);
+  const flatList = useRef<FlatList>(null);
+
+  const showBtnDelete = isFocus && !!valuePhone?.length;
+
+  const handleStartOpenModal = () => {
+    const index = ListCountry?.indexOf(valueCoding);
+    if (index >= 0) {
+      const wait = new Promise((resolve: any) => setTimeout(resolve, 50));
+      wait.then(() => {
+        flatList?.current?.scrollToIndex({
+          index: index,
+          animated: true,
+          viewPosition: 0,
+        });
+      });
+    }
+  };
+
+  const handlePressCountry = (value: any) => {
+    setValueCoding(value);
+    refModal.current?.close();
+  };
+
   return (
-    <>
+    <View>
       <View
         style={[
           styles.container,
@@ -25,9 +55,17 @@ export const AppInputPhone = () => {
             borderColor: Colors.primary,
           },
         ]}>
-        <AppTouchable onPress={() => refSheetModal.current?.snapToIndex(0)}>
+        <AppTouchable
+          onPress={() => refModal.current?.open()}
+          style={styles.btnFlag}>
+          <Image source={{uri: valueCoding['flag']}} style={styles.flag} />
           <Svgs.ArrowDown />
         </AppTouchable>
+        {valueCoding['callingCode']?.length > 0 ? (
+          <AppText style={{paddingLeft: scaler(12)}}>
+            {`+${valueCoding['callingCode'][0]} `}
+          </AppText>
+        ) : null}
 
         <TextInput
           keyboardType="phone-pad"
@@ -40,21 +78,59 @@ export const AppInputPhone = () => {
           onBlur={e => {
             setIsFocus(false);
           }}
-          onChangeText={(text: string) => setValue(text)}
-          value={value}
+          onChangeText={(text: string) => setValuePhone(text)}
+          value={valuePhone}
         />
         {showBtnDelete && (
-          <AppTouchable style={styles.btnDelete} onPress={() => setValue('')}>
+          <AppTouchable
+            style={styles.btnDelete}
+            onPress={() => setValuePhone('')}>
             <View style={styles.viewIconDelete}>
               <Svgs.Close size={scaler(12)} color={Colors.white} />
             </View>
           </AppTouchable>
         )}
       </View>
-      <AppBottomSheetModal ref={refSheetModal} snapPoints={[500]}>
-        <ImagePickerComponent />
-      </AppBottomSheetModal>
-    </>
+      <AppModal
+        ref={refModal}
+        position="bottom"
+        onOpened={handleStartOpenModal}
+        modalSize={{
+          height: (2 * dimensions.height) / 3,
+          width: dimensions.width,
+        }}>
+        <View style={{paddingVertical: scaler(16)}}>
+          <FlatList
+            data={ListCountry}
+            ref={flatList}
+            bounces={false}
+            keyExtractor={(_: any, index: number) => index.toString()}
+            renderItem={({item}) => (
+              <ItemOption
+                label={item['name']}
+                onPress={() => handlePressCountry(item)}
+              />
+            )}
+            onScrollToIndexFailed={info => {
+              const wait = new Promise((resolve: any) =>
+                setTimeout(resolve, 500),
+              );
+              wait.then(() => {
+                flatList.current?.scrollToIndex({
+                  index: info.index,
+                  animated: true,
+                });
+              });
+            }}
+            getItemLayout={(_, index) => ({
+              length: HEIGHT_ITEM_OPTION,
+              offset: HEIGHT_ITEM_OPTION * index,
+              index,
+            })}
+          />
+        </View>
+      </AppModal>
+    </View>
   );
 };
 
@@ -75,7 +151,6 @@ const styles = StyleSheet.create({
     fontSize: FontSize.Font14,
     color: Colors.textColor,
     ...Fonts.fontWeight600,
-    paddingLeft: scaler(12),
   },
   viewIconDelete: {
     height: scaler(16),
@@ -89,5 +164,16 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'center',
     paddingHorizontal: scaler(8),
+  },
+  btnFlag: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: '100%',
+    paddingLeft: scaler(12),
+  },
+  flag: {
+    height: scaler(16),
+    width: scaler(24),
+    marginRight: Spacing.width8,
   },
 });
