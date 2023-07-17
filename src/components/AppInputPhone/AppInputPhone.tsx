@@ -1,49 +1,60 @@
 import {StyleSheet, Text, TextInput, View} from 'react-native';
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {AppTouchable} from '@components/AppTouchable';
 import {Svgs} from '@assets';
 import {Colors, Fonts, FontSize, scaler} from '@themes';
+import {
+  AppBottomSheetModal,
+  AppBottomSheetModalRef,
+} from '@components/AppBottomSheetModal';
+import {ImagePickerComponent} from '@components/common';
 
 export const AppInputPhone = () => {
   const [isFocus, setIsFocus] = useState<boolean>(false);
   const [value, setValue] = useState<string>('');
+  const refSheetModal = useRef<AppBottomSheetModalRef>(null);
 
   const showBtnDelete = isFocus && !!value?.length;
   return (
-    <View
-      style={[
-        styles.container,
-        isFocus && {
-          backgroundColor: `${Colors.primary}08`,
-          borderColor: Colors.primary,
-        },
-      ]}>
-      <AppTouchable>
-        <Svgs.ArrowDown />
-      </AppTouchable>
-
-      <TextInput
-        keyboardType="phone-pad"
-        placeholderTextColor={Colors.gray.gray10}
-        placeholder={isFocus ? '' : 'Phone number'}
-        style={styles.input}
-        onFocus={e => {
-          setIsFocus(true);
-        }}
-        onBlur={e => {
-          setIsFocus(false);
-        }}
-        onChangeText={(text: string) => setValue(text)}
-        value={value}
-      />
-      {showBtnDelete && (
-        <AppTouchable style={styles.btnDelete} onPress={() => setValue('')}>
-          <View style={styles.viewIconDelete}>
-            <Svgs.Close size={scaler(12)} color={Colors.white} />
-          </View>
+    <>
+      <View
+        style={[
+          styles.container,
+          isFocus && {
+            backgroundColor: `${Colors.primary}08`,
+            borderColor: Colors.primary,
+          },
+        ]}>
+        <AppTouchable onPress={() => refSheetModal.current?.snapToIndex(0)}>
+          <Svgs.ArrowDown />
         </AppTouchable>
-      )}
-    </View>
+
+        <TextInput
+          keyboardType="phone-pad"
+          placeholderTextColor={Colors.gray.gray10}
+          placeholder={isFocus ? '' : 'Phone number'}
+          style={styles.input}
+          onFocus={e => {
+            setIsFocus(true);
+          }}
+          onBlur={e => {
+            setIsFocus(false);
+          }}
+          onChangeText={(text: string) => setValue(text)}
+          value={value}
+        />
+        {showBtnDelete && (
+          <AppTouchable style={styles.btnDelete} onPress={() => setValue('')}>
+            <View style={styles.viewIconDelete}>
+              <Svgs.Close size={scaler(12)} color={Colors.white} />
+            </View>
+          </AppTouchable>
+        )}
+      </View>
+      <AppBottomSheetModal ref={refSheetModal} snapPoints={[500]}>
+        <ImagePickerComponent />
+      </AppBottomSheetModal>
+    </>
   );
 };
 
