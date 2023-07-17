@@ -17,3 +17,4 @@ export * from './SignInUp';
 export * from './AppPickerFormik';
 export * from './AppBottomSheet';
 export * from './AppBottomSheetModal';
+export * from './AppInputPhone';

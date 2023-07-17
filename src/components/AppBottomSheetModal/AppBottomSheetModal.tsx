@@ -1,7 +1,9 @@
 import BottomSheet, {
   BottomSheetBackdrop,
   BottomSheetBackdropProps,
+  BottomSheetModal,
 } from '@gorhom/bottom-sheet';
+import {useBottomSheetBackHandler} from '@hooks';
 import {Colors} from '@themes';
 import React, {
   forwardRef,
@@ -27,7 +29,9 @@ export const AppBottomSheetModal = forwardRef<AppBottomSheetModalRef, Props>(
   (props, ref) => {
     const {onChange, snapPoints, children} = props;
     // ref
-    const bottomSheetRef = useRef<BottomSheet>(null);
+    const bottomSheetRef = useRef<BottomSheetModal>(null);
+    const {handleSheetPositionChange} =
+      useBottomSheetBackHandler(bottomSheetRef);
 
     useImperativeHandle(
       ref,
@@ -59,14 +63,21 @@ export const AppBottomSheetModal = forwardRef<AppBottomSheetModalRef, Props>(
       [],
     );
 
+    const handleChange = (index: number) => {
+      handleSheetPositionChange(index);
+      !!onChange && onChange(index);
+    };
+
     return (
       <BottomSheet
+        // detached
+        keyboardBehavior="fillParent"
         ref={bottomSheetRef}
         index={-1}
         snapPoints={snapPoints}
         enablePanDownToClose={true}
         backdropComponent={renderBackdrop}
-        onChange={onChange}>
+        onChange={handleChange}>
         <View style={styles.contentContainer}>{children}</View>
       </BottomSheet>
     );

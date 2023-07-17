@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "236935409884",
+    "project_id": "taska-abb10",
+    "storage_bucket": "taska-abb10.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:236935409884:android:74e329cee14b34dd7fc419",
+        "android_client_info": {
+          "package_name": "com.taska"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "236935409884-s4s9ri56336vl8fqprlu0ofhtclto3ip.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.taska",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "236935409884-fv6c14t5u5dv9pq53vmddviih2qd6m79.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBndc3ZfaScXaN4ZsSb2yCqIfFae4O6CHg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "236935409884-fv6c14t5u5dv9pq53vmddviih2qd6m79.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "236935409884-m0m14c0tvl4fu2q7hgh6vokfggac9nc0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.taska"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

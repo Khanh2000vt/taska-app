@@ -1,5 +1,3 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
 import {IFormikFillProfile} from '@interfaces';
 import {useTranslation} from 'react-i18next';
 
@@ -10,7 +8,7 @@ export const FillProfileHook = () => {
     avatar: null,
     name: '',
     user_name: '',
-    date_of_birth: null,
+    date_of_birth: undefined,
     email: '',
     phone: '',
     type: null,

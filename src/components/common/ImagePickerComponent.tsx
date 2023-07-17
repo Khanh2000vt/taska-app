@@ -1,9 +1,21 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {IOption} from '@interfaces';
 import {ItemOption} from './ItemOption';
+import {checkPhotoLibrary} from '@utils';
+import ImagePicker from 'react-native-image-crop-picker';
+import {PHOTO} from '@constants';
+import {
+  ModalPermission,
+  ModalRequestPermission,
+} from '@components/ModalRequestPermission';
+type ImagePickerComponentProps = {
+  onOpenSettingsPermission?: () => void;
+};
 
-export const ImagePickerComponent = () => {
+export const ImagePickerComponent = ({
+  onOpenSettingsPermission = () => {},
+}: ImagePickerComponentProps) => {
   const dataOption: IOption<number>[] = [
     {
       id: 1,
@@ -18,9 +30,64 @@ export const ImagePickerComponent = () => {
       onPress: () => handlePressLibrary(),
     },
   ];
-  const handlePressCamera = () => {};
 
-  const handlePressLibrary = () => {};
+  const [response, setResponse] = useState<any>(null);
+
+  const refPermission = useRef<ModalPermission>(null);
+
+  useEffect(() => {
+    console.log('response: ', response);
+  }, [response]);
+
+  const handlePressCamera = () => {
+    console.log('handlePressCamera');
+    onOpenLibraryApp(() => {
+      handlePressOptionCamera(PHOTO.CAMERA);
+    });
+  };
+
+  const handlePressLibrary = () => {
+    console.log('handlePressLibrary');
+    onOpenLibraryApp(() => {
+      handlePressOptionCamera(PHOTO.LIBRARY);
+    });
+  };
+
+  const onOpenLibraryApp = async (callback: () => void) => {
+    const isCamera = await checkPhotoLibrary(() => {
+      refPermission.current?.open();
+    });
+    !!isCamera &&
+      setTimeout(() => {
+        console.log('setTimeout-setTimeout');
+        callback();
+      }, 100);
+  };
+
+  const handlePressOptionCamera = useCallback(async (value: number) => {
+    if (value === PHOTO.CAMERA) {
+      ImagePicker.openCamera({
+        mediaType: 'photo',
+        width: 300,
+        height: 300,
+        cropping: true,
+      }).then(image => {
+        setResponse(image);
+      });
+    } else if (value === PHOTO.LIBRARY) {
+      ImagePicker.openPicker({
+        mediaType: 'photo',
+        width: 300,
+        height: 300,
+        cropping: true,
+      })
+        .then(image => {
+          setResponse(image);
+        })
+        .catch(e => console.log(e));
+    }
+  }, []);
+
   return (
     <>
       {dataOption.map(button => {
@@ -32,6 +99,10 @@ export const ImagePickerComponent = () => {
           />
         );
       })}
+      <ModalRequestPermission
+        ref={refPermission}
+        onCallBack={onOpenSettingsPermission}
+      />
     </>
   );
 };
