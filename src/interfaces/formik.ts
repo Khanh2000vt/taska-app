@@ -10,5 +10,6 @@ export type IFormikFillProfile = {
   date_of_birth: undefined | Date;
   email: string;
   phone: string | null;
+  countryPhone: any;
   type: null | string;
 };

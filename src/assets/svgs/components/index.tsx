@@ -102,6 +102,72 @@ function Close(props: any) {
   );
 }
 
-const SvgComponent = {EmailInput, LockInput, EyeSlash, Eye, Close};
+function EmailOutline(props: any) {
+  const {color} = props;
+  return (
+    <Svg
+      width={20}
+      height={20}
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}>
+      <Path
+        d="M14.62 7.516s-2.674 3.21-4.63 3.21c-1.957 0-4.662-3.21-4.662-3.21"
+        stroke={color || '#9E9E9E'}
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        clipRule="evenodd"
+        d="M2.043 9.974c0-5.698 1.985-7.597 7.937-7.597s7.936 1.899 7.936 7.597-1.984 7.597-7.936 7.597-7.937-1.9-7.937-7.597z"
+        stroke={color || '#9E9E9E'}
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
+
+function CalendarOutline(props: any) {
+  const {color} = props;
+  return (
+    <Svg
+      width={20}
+      height={20}
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}>
+      <Path
+        clipRule="evenodd"
+        d="M2.292 10.646c0-5.796 1.932-7.728 7.728-7.728 5.796 0 7.729 1.932 7.729 7.728 0 5.797-1.932 7.729-7.73 7.729-5.795 0-7.728-1.932-7.728-7.729z"
+        stroke={color || '#9E9E9E'}
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M2.521 7.77h15.007M13.69 11.05h.008M10.024 11.05h.008M6.351 11.05h.008M13.69 14.26h.008M10.024 14.26h.008M6.351 14.26h.008M13.36 1.708v2.719M6.687 1.708v2.719"
+        stroke={color || '#9E9E9E'}
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
+
+const SvgComponent = {
+  EmailInput,
+  LockInput,
+  EyeSlash,
+  Eye,
+  Close,
+  EmailOutline,
+  CalendarOutline,
+};
 
 export {SvgComponent};
