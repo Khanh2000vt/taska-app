@@ -10,7 +10,7 @@ export const FillProfileHook = () => {
     name: '',
     user_name: '',
     date_of_birth: undefined,
-    email: '',
+    email: 'khanh2000vt@gmail.com',
     phone: '',
     countryPhone: ListCountry[0],
     type: null,

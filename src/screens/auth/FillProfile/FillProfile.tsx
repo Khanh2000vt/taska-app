@@ -1,3 +1,4 @@
+import {Svgs} from '@assets';
 import {
   AppBottomSheetModal,
   AppBottomSheetModalRef,
@@ -12,6 +13,7 @@ import {
 } from '@components';
 import {IFormikFillProfile} from '@interfaces';
 import {Spacing} from '@themes';
+import {FillProfileSchema} from '@validates';
 import dayjs from 'dayjs';
 import {Formik, FormikProps} from 'formik';
 import React, {useRef, useState} from 'react';
@@ -47,6 +49,7 @@ export const FillProfile = () => {
         <Formik
           innerRef={refFormik}
           initialValues={initValueFillProfile}
+          validationSchema={FillProfileSchema}
           onSubmit={handleSubmit}>
           {({handleSubmit, values}) => (
             <>
@@ -67,14 +70,17 @@ export const FillProfile = () => {
                   }
                   label="Date of Birth"
                   onPress={() => setOpen(true)}
+                  Icon={Svgs.CalendarOutline}
                 />
                 <AppPickerFormik
-                  value={'khanh2000vt@gmail.com'}
+                  value={values.email}
                   label="Email"
+                  Icon={Svgs.EmailOutline}
                 />
 
                 <AppInputPhone labelCoding="countryPhone" labelPhone="phone" />
-                <AppButton label="Continue" onPress={() => {}} />
+                <AppPickerFormik value={values.type} label="Role" />
+                <AppButton label="Continue" onPress={handleSubmit} />
               </ColumnView>
               <DatePicker
                 modal

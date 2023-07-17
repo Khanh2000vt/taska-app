@@ -10,18 +10,22 @@ export const AppPickerFormik = ({
   label,
   value,
   onPress,
+  Icon,
 }: AppPickerFormikProps) => {
   return (
     <AppTouchable style={styles.button} onPress={onPress}>
-      {!!value ? (
-        <AppText font={Fonts.fontWeight600}>{value}</AppText>
-      ) : (
-        <AppText color={Colors.gray.gray70} font={Fonts.fontWeight400}>
-          {label}
-        </AppText>
-      )}
-
-      <Svgs.EmailInput />
+      <>
+        {!!value ? (
+          <AppText font={Fonts.fontWeight600}>{value}</AppText>
+        ) : (
+          <AppText color={Colors.gray.gray70} font={Fonts.fontWeight400}>
+            {label}
+          </AppText>
+        )}
+        {!!Icon && (
+          <Icon color={!!value ? Colors.textColor : Colors.gray.gray70} />
+        )}
+      </>
     </AppTouchable>
   );
 };
