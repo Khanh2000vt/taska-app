@@ -1,15 +1,19 @@
 import React from 'react';
+import {StyleProp, ViewStyle} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {BodyScreenProps} from '../AppScreen.props';
 
-export const ScrollViewScreen = ({children, style}: BodyScreenProps) => {
+type Props = {
+  children: React.ReactNode;
+  style?: StyleProp<ViewStyle>;
+};
+export const ScrollViewScreen = ({children, style}: Props) => {
   return (
     <KeyboardAwareScrollView
       keyboardShouldPersistTaps="always"
       keyboardDismissMode="on-drag"
       showsVerticalScrollIndicator={false}
       bounces={false}
-      style={[{flex: 1}, style]}>
+      style={[style]}>
       <>{children}</>
     </KeyboardAwareScrollView>
   );

@@ -9,10 +9,12 @@ import {Stack} from './stack';
 const MainStack = createStackNavigator();
 
 const NavigationApp = React.forwardRef((props, ref: any) => {
-  const token = useSelector((state: RootState) => state.accountSlice?.token);
+  const loginSuccess = useSelector(
+    (state: RootState) => state.accountSlice?.login,
+  );
 
   const renderStackApp = () => {
-    if (!token) {
+    if (!loginSuccess) {
       return <Stack.AuthStackComponent />;
     } else {
       return <Stack.MainStackComponent />;
@@ -20,14 +22,14 @@ const NavigationApp = React.forwardRef((props, ref: any) => {
   };
   return (
     <NavigationContainer ref={ref} onReady={() => SplashScreen.hide()}>
-      {/* {renderStackApp()} */}
+      {renderStackApp()}
       {/* Thay thế component để build UI */}
-      <MainStack.Navigator
+      {/* <MainStack.Navigator
         screenOptions={{
           headerShown: false,
         }}>
         <MainStack.Screen name="A" component={screens.FillProfile} />
-      </MainStack.Navigator>
+      </MainStack.Navigator> */}
     </NavigationContainer>
   );
 });

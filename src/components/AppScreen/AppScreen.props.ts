@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatListProps, StyleProp, TextStyle, ViewStyle} from 'react-native';
+import {StyleProp, TextStyle, ViewStyle} from 'react-native';
 
 export type IButtonHeader = {
   id: number;
@@ -15,23 +15,7 @@ type IHeader = {
   styleTitle?: StyleProp<TextStyle>;
 };
 
-type IFlatListScreen = {
-  onRefresh: () => void;
-  onLoadMore: () => void;
-};
-
 type IAppScreen = {
-  type?: 'view' | 'scroll-view' | 'flat-list';
-
-  flatList?: Omit<
-    FlatListProps<number>,
-    | 'renderItem'
-    | 'refreshControl'
-    | 'onEndReached'
-    | 'showsVerticalScrollIndicator'
-    | 'data'
-  > &
-    IFlatListScreen;
   horizontal?: number;
   top?: number;
   bottom?: number;
@@ -48,7 +32,7 @@ type IHeaderScreen = {
 };
 
 export type AppScreenProps = IAppScreen & IView & IHeaderScreen;
-export type AppScreenHeaderProps = Pick<AppScreenProps, 'type'> & IHeaderScreen;
+export type AppScreenHeaderProps = IHeaderScreen;
 export type BodyScreenProps = IView;
 export type SwitchScreenProps = Omit<AppScreenProps, 'header'> & IView;
 export type FlatListScreenProps = Omit<AppScreenProps, 'type' | 'header'>;
