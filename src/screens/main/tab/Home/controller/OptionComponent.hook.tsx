@@ -1,8 +1,12 @@
+import {logoutUser} from '@redux';
 import {useTheme} from '@themes';
 import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
 
 export const OptionHook = () => {
   const {updateTheme, themeColor} = useTheme();
+  const dispatch = useDispatch();
+
   const [dark, setDark] = useState<boolean>(false);
   const data = [
     {id: 1, label: 'Workspace', onPress: () => {}},
@@ -17,5 +21,10 @@ export const OptionHook = () => {
     updateTheme(!value);
     setDark(value);
   };
-  return {data, dark, handleChangeTheme, themeColor};
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
+  };
+
+  return {data, dark, handleChangeTheme, themeColor, handleLogout};
 };

@@ -5,7 +5,8 @@ import {StyleSheet, View} from 'react-native';
 import {OptionHook} from '../controller';
 
 export const OptionComponent = () => {
-  const {data, dark, handleChangeTheme, themeColor} = OptionHook();
+  const {data, dark, handleChangeTheme, themeColor, handleLogout} =
+    OptionHook();
   return (
     <View
       style={{
@@ -28,7 +29,9 @@ export const OptionComponent = () => {
         value={dark}
         noneChangeColorTitle
       />
-      <AppTouchable style={{paddingVertical: scaler(10)}}>
+      <AppTouchable
+        style={{paddingVertical: scaler(10)}}
+        onPress={handleLogout}>
         <AppText size={FontSize.Font18} color={Colors.gray.gray50}>
           Logout
         </AppText>

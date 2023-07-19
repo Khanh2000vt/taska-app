@@ -1,59 +1,29 @@
+import {AppText} from '@components';
 import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
-import {dimensions, scaler, Spacing} from '@themes';
-import React, {useEffect} from 'react';
-import {Animated, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {Colors, Fonts, FontSize, scaler, Spacing} from '@themes';
+import React from 'react';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {getBottomSpace} from 'react-native-iphone-x-helper';
 import {SvgProps} from 'react-native-svg';
-import {ITabBar} from './TabNavigator';
+import {IItemTabBar, ITabBar} from './TabNavigator';
 
 type CustomTabBarProps = BottomTabBarProps & {
   tabBar: ITabBar;
 };
-const WIDTH_TAB = dimensions.width / 1;
 export const CustomTabBar = ({
   state,
   descriptors,
   navigation,
   tabBar,
 }: CustomTabBarProps) => {
-  // const dispatch = useDispatch();
-  const animatedIsFocused = React.useRef(new Animated.Value(0)).current;
-  useEffect(() => {
-    Animated.spring(animatedIsFocused, {
-      toValue: state.index * WIDTH_TAB,
-      // duration: 200,
-      useNativeDriver: true,
-      // tension: 50,
-      friction: 9,
-      tension: 70,
-    }).start();
-  }, [state.index]);
   return (
     <View style={styles.tabBar}>
-      <Animated.View
-        style={{
-          backgroundColor: '#fff',
-          position: 'absolute',
-          width: WIDTH_TAB,
-          height: '100%',
-          justifyContent: 'center',
-          alignItems: 'center',
-          // opacity: opacity,
-          transform: [{translateX: animatedIsFocused}],
-        }}>
-        <View
-          style={{
-            width: scaler(40),
-            height: scaler(40),
-            borderRadius: scaler(16),
-            backgroundColor: '#EFEAFF',
-          }}
-        />
-      </Animated.View>
       {state.routes.map((route, index) => {
         const {options} = descriptors[route.key];
         const isFocused = state.index === index;
         const Icon = tabBar[route.name].Icon;
+        const IconBlur = tabBar[route.name].IconBlur;
+        const label = tabBar[route.name]?.label;
 
         const onPress = () => {
           const event = navigation.emit({
@@ -72,9 +42,10 @@ export const CustomTabBar = ({
           <TabBarItem
             key={route.key}
             Icon={Icon}
+            IconBlur={IconBlur}
             active={isFocused}
             onPress={onPress}
-            index={index}
+            label={label}
           />
         );
       })}
@@ -83,13 +54,17 @@ export const CustomTabBar = ({
 };
 
 type TabBarItemProps = {
-  Icon: React.FC<SvgProps>;
   active: boolean;
   onPress: () => void;
-  index: number;
-};
+} & Omit<IItemTabBar, 'name' | 'route'>;
 
-const TabBarItem = ({Icon, active, onPress, index}: TabBarItemProps) => {
+const TabBarItem = ({
+  Icon,
+  active,
+  onPress,
+  IconBlur,
+  label,
+}: TabBarItemProps) => {
   return (
     <View style={styles.tabBarItem}>
       <TouchableOpacity
@@ -97,11 +72,21 @@ const TabBarItem = ({Icon, active, onPress, index}: TabBarItemProps) => {
         activeOpacity={1}
         style={{
           flex: 1,
-          // width: '100%',
           alignItems: 'center',
           justifyContent: 'center',
+          rowGap: scaler(2),
         }}>
-        <Icon />
+        {active ? <Icon /> : <IconBlur />}
+        <>
+          {!!label && (
+            <AppText
+              font={active ? Fonts.fontWeight700 : Fonts.fontWeight500}
+              color={active ? Colors.primary : Colors.gray.gray70}
+              size={FontSize.Font10}>
+              {label}
+            </AppText>
+          )}
+        </>
       </TouchableOpacity>
     </View>
   );
@@ -111,8 +96,6 @@ const styles = StyleSheet.create({
   tabBar: {
     flexDirection: 'row',
     backgroundColor: '#fff',
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: '#ccc',
     paddingBottom:
       getBottomSpace() > 0
         ? getBottomSpace() + Spacing.height18
