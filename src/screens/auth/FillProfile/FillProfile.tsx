@@ -10,9 +10,10 @@ import {
   AvatarUser,
   ColumnView,
   ImagePickerComponent,
+  ScrollViewScreen,
 } from '@components';
 import {IFormikFillProfile} from '@interfaces';
-import {Spacing} from '@themes';
+import {scaler, Spacing} from '@themes';
 import {FillProfileSchema} from '@validates';
 import dayjs from 'dayjs';
 import {Formik, FormikProps} from 'formik';
@@ -22,27 +23,21 @@ import DatePicker from 'react-native-date-picker';
 import {FillProfileHook} from './FillProfile.hook';
 
 export const FillProfile = () => {
-  const {t, initValueFillProfile} = FillProfileHook();
-  const refFormik = useRef<FormikProps<IFormikFillProfile>>(null);
-  const [open, setOpen] = useState(false);
+  const {
+    t,
+    initValueFillProfile,
+    open,
+    refSheetModal,
+    refFormik,
+    handleDatePicker,
+    handleSubmit,
+    setOpen,
+    getInputFillFull,
+  } = FillProfileHook();
 
-  const refSheetModal = useRef<AppBottomSheetModalRef>(null);
-
-  const handleDatePicker = (date: Date) => {
-    try {
-      refFormik.current?.setFieldValue('date_of_birth', date);
-    } catch (e) {
-      console.log('error: ', e);
-    } finally {
-      setOpen(false);
-    }
-  };
-
-  const handleSubmit = (values: any) => {};
   return (
     <>
       <AppScreen
-        type="scroll-view"
         header={{
           title: t('fillProfile.header'),
         }}>
@@ -53,35 +48,45 @@ export const FillProfile = () => {
           onSubmit={handleSubmit}>
           {({handleSubmit, values}) => (
             <>
-              <ColumnView gap={Spacing.height24} mt={Spacing.height24}>
-                <AvatarUser
-                  onPress={() => refSheetModal.current?.snapToIndex(0)}
-                />
-                <AppInputFormik labelFormik="name" placeholder="Full Name" />
-                <AppInputFormik
-                  labelFormik="user_name"
-                  placeholder="Username"
-                />
-                <AppPickerFormik
-                  value={
-                    values.date_of_birth
-                      ? dayjs(values.date_of_birth).format('DD - MM - YYYY')
-                      : undefined
-                  }
-                  label="Date of Birth"
-                  onPress={() => setOpen(true)}
-                  Icon={Svgs.CalendarOutline}
-                />
-                <AppPickerFormik
-                  value={values.email}
-                  label="Email"
-                  Icon={Svgs.EmailOutline}
-                />
+              <ScrollViewScreen>
+                <ColumnView gap={Spacing.height24} mt={Spacing.height24}>
+                  <AvatarUser
+                    onPress={() => refSheetModal.current?.snapToIndex(0)}
+                  />
+                  <AppInputFormik labelFormik="name" placeholder="Full Name" />
+                  <AppInputFormik
+                    labelFormik="user_name"
+                    placeholder="Username"
+                  />
+                  <AppPickerFormik
+                    value={
+                      values.date_of_birth
+                        ? dayjs(values.date_of_birth).format('DD - MM - YYYY')
+                        : undefined
+                    }
+                    label="Date of Birth"
+                    onPress={() => setOpen(true)}
+                    Icon={Svgs.CalendarOutline}
+                  />
+                  <AppPickerFormik
+                    value={values.email}
+                    label="Email"
+                    Icon={Svgs.EmailOutline}
+                  />
 
-                <AppInputPhone labelCoding="countryPhone" labelPhone="phone" />
-                <AppPickerFormik value={values.type} label="Role" />
-                <AppButton label="Continue" onPress={handleSubmit} />
-              </ColumnView>
+                  <AppInputPhone
+                    labelCoding="countryPhone"
+                    labelPhone="phone"
+                  />
+                  <AppPickerFormik value={values.type} label="Role" />
+                </ColumnView>
+              </ScrollViewScreen>
+              <AppButton
+                label="Continue"
+                onPress={handleSubmit}
+                style={{marginTop: scaler(16)}}
+                disabled={!getInputFillFull()}
+              />
               <DatePicker
                 modal
                 open={open}
@@ -98,6 +103,7 @@ export const FillProfile = () => {
           )}
         </Formik>
       </AppScreen>
+
       <AppBottomSheetModal ref={refSheetModal} snapPoints={['25%']}>
         <ImagePickerComponent />
       </AppBottomSheetModal>

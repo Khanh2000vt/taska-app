@@ -10,39 +10,56 @@ import {screens} from '@screens';
 import React from 'react';
 import {SvgProps} from 'react-native-svg';
 import {CustomTabBar} from './CustomTabBar';
+
+export type IItemTabBar = {
+  name: string;
+  route: () => JSX.Element;
+  Icon: React.FC<SvgProps>;
+  IconBlur: React.FC<SvgProps>;
+  label?: string;
+};
 export interface ITabBar {
-  [x: string]: {
-    name: string;
-    route: () => JSX.Element;
-    Icon: React.FC<SvgProps>;
-  };
+  [x: string]: IItemTabBar;
 }
 
-const {HOME_TAB} = ROUTE_TAB;
+const {HOME_TAB, PROJECT_TAB, FUNCTION_TAB, INBOX_TAB, PROFILE_TAB} = ROUTE_TAB;
 const Tab = createBottomTabNavigator();
 const TabNavigator = () => {
   const TAB_BAR: ITabBar = {
     [HOME_TAB]: {
       name: HOME_TAB,
       route: screens.Home,
-      // Icon: Svgs.Search,
-      Icon: <></>,
+      Icon: Svgs.HomeBold,
+      IconBlur: Svgs.HomeBorder,
+      label: 'Home',
     },
-    // [CALENDAR_TAB]: {
-    //   name: CALENDAR_TAB,
-    //   route: Stack.CalendarStackComponent,
-    //   Icon: Svg.Calendar,
-    // },
-    // [MESSAGE_TAB]: {
-    //   name: MESSAGE_TAB,
-    //   route: Stack.MessageStackComponent,
-    //   Icon: Svg.Message,
-    // },
-    // [ACCOUNT_TAB]: {
-    //   name: ACCOUNT_TAB,
-    //   route: Stack.AccountStackComponent,
-    //   Icon: Svg.User,
-    // },
+    [PROJECT_TAB]: {
+      name: PROJECT_TAB,
+      route: screens.Home,
+      Icon: Svgs.DocumentBold,
+      IconBlur: Svgs.DocumentBorder,
+      label: 'Project',
+    },
+    [FUNCTION_TAB]: {
+      name: FUNCTION_TAB,
+      route: screens.Home,
+      Icon: Svgs.FunctionFocus,
+      IconBlur: Svgs.FunctionBlur,
+    },
+    [INBOX_TAB]: {
+      name: INBOX_TAB,
+      route: screens.Home,
+      Icon: Svgs.ChatBold,
+      IconBlur: Svgs.ChatBorder,
+      label: 'Inbox',
+    },
+    [PROFILE_TAB]: {
+      name: PROFILE_TAB,
+      route: screens.Home,
+      Icon: Svgs.ProfileBold,
+      IconBlur: Svgs.ProfileBorder,
+      label: 'Profile',
+    },
   };
   return (
     <Tab.Navigator

@@ -4,6 +4,7 @@ import {createSlice} from '@reduxjs/toolkit';
 
 const initialState: IAccount = {
   token: '',
+  login: false,
   user: {},
 };
 
@@ -27,12 +28,20 @@ const accountSlice = createSlice({
         ...action.payload,
       };
     },
-    logoutUser(state) {
+    loginSuccess(state) {
+      state.login = true;
+    },
+    logoutUser() {
       return initialState;
     },
   },
 });
 
-export const {setUser, logoutUser, changeAvatarUser, editProfileUser} =
-  accountSlice.actions;
+export const {
+  setUser,
+  logoutUser,
+  changeAvatarUser,
+  editProfileUser,
+  loginSuccess,
+} = accountSlice.actions;
 export default accountSlice.reducer;

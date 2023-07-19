@@ -5,3 +5,4 @@ export * from './ColumnView';
 export * from './Link';
 export * from './AvatarUser';
 export * from './ImagePickerComponent';
+export * from './ScrollViewScreen';
