@@ -3,10 +3,11 @@ import {EScreenSign} from '@constants';
 import {IFormikSign, ILoginSocial, INavigateAuth} from '@interfaces';
 import {AuthStackParamList, ROUTE_AUTH} from '@navigation';
 import {useNavigation} from '@react-navigation/native';
-import {setUser} from '@redux';
+import {loginSuccess, setUser} from '@redux';
 import {useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {useDispatch} from 'react-redux';
+import auth from '@react-native-firebase/auth';
 
 export const SignInUpHook = (type: EScreenSign) => {
   const {t} = useTranslation();
@@ -53,12 +54,40 @@ export const SignInUpHook = (type: EScreenSign) => {
   //   } catch (e) {}
   // };
 
-  const handleSign = (values: IFormikSign) => {
-    console.log('test: ');
+  const handleSign = async (values: IFormikSign) => {
     if (type === EScreenSign.SIGN_IN) {
-      dispatch(setUser({token: 'abc', user: {}}));
+      try {
+        await auth().signInWithEmailAndPassword(values.email, values.password);
+        dispatch(loginSuccess());
+      } catch (error) {
+        //@ts-ignore
+        if (error?.code === 'auth/email-already-in-use') {
+          console.log('That email address is already in use!');
+        }
+        //@ts-ignore
+        if (error?.code === 'auth/invalid-email') {
+          console.log('That email address is invalid!');
+        }
+        console.log('error: ', error);
+      }
     } else {
-      navigation.navigate(ROUTE_AUTH.FILL_PROFILE);
+      try {
+        await auth().createUserWithEmailAndPassword(
+          values.email,
+          values.password,
+        );
+        navigation.navigate(ROUTE_AUTH.FILL_PROFILE);
+      } catch (error) {
+        //@ts-ignore
+        if (error?.code === 'auth/email-already-in-use') {
+          console.log('That email address is already in use!');
+        }
+        //@ts-ignore
+        if (error?.code === 'auth/invalid-email') {
+          console.log('That email address is invalid!');
+        }
+        console.log('error: ', error);
+      }
     }
   };
 
