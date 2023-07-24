@@ -1,13 +1,15 @@
 import {Svgs} from '@assets';
+import {GlobalService} from '@components/GlobalUI';
 import {EScreenSign} from '@constants';
 import {IFormikSign, ILoginSocial, INavigateAuth} from '@interfaces';
-import {AuthStackParamList, ROUTE_AUTH} from '@navigation';
+import {ROUTE_AUTH} from '@navigation';
+import auth from '@react-native-firebase/auth';
 import {useNavigation} from '@react-navigation/native';
-import {loginSuccess, setUser} from '@redux';
+import {loginSuccess} from '@redux';
 import {useState} from 'react';
 import {useTranslation} from 'react-i18next';
+import {Alert} from 'react-native';
 import {useDispatch} from 'react-redux';
-import auth from '@react-native-firebase/auth';
 
 export const SignInUpHook = (type: EScreenSign) => {
   const {t} = useTranslation();
@@ -57,21 +59,30 @@ export const SignInUpHook = (type: EScreenSign) => {
   const handleSign = async (values: IFormikSign) => {
     if (type === EScreenSign.SIGN_IN) {
       try {
+        GlobalService.showLoading();
         await auth().signInWithEmailAndPassword(values.email, values.password);
         dispatch(loginSuccess());
       } catch (error) {
         //@ts-ignore
         if (error?.code === 'auth/email-already-in-use') {
-          console.log('That email address is already in use!');
+          Alert.alert('That email address is already in use!');
         }
         //@ts-ignore
         if (error?.code === 'auth/invalid-email') {
-          console.log('That email address is invalid!');
+          Alert.alert('That email address is invalid!');
+        }
+
+        //@ts-ignore
+        if (error?.code === 'auth/user-not-found') {
+          Alert.alert('Email or password is incorrect!');
         }
         console.log('error: ', error);
+      } finally {
+        GlobalService.hideLoading();
       }
     } else {
       try {
+        GlobalService.showLoading();
         await auth().createUserWithEmailAndPassword(
           values.email,
           values.password,
@@ -80,13 +91,14 @@ export const SignInUpHook = (type: EScreenSign) => {
       } catch (error) {
         //@ts-ignore
         if (error?.code === 'auth/email-already-in-use') {
-          console.log('That email address is already in use!');
+          Alert.alert('That email address is already in use!');
         }
         //@ts-ignore
         if (error?.code === 'auth/invalid-email') {
-          console.log('That email address is invalid!');
+          Alert.alert('That email address is invalid!');
         }
-        console.log('error: ', error);
+      } finally {
+        GlobalService.hideLoading();
       }
     }
   };
