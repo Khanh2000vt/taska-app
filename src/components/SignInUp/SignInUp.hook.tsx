@@ -107,7 +107,9 @@ export const SignInUpHook = (type: EScreenSign) => {
     setRememberMe(checked);
   };
 
-  const handleForgot = () => {};
+  const handleForgot = () => {
+    navigation.navigate(ROUTE_AUTH.FORGOT_PASSWORD);
+  };
 
   const handleChangeSign = () => {
     navigation.replace(

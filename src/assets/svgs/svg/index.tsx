@@ -17,6 +17,8 @@ import ProfileBorder from './profile-border.svg';
 import FunctionFocus from './function-focus.svg';
 import FunctionBlur from './function-blur.svg';
 import Loading from './loading.svg';
+import ChatPrimary from './chat-primary.svg';
+import MessagePrimary from './message-primary.svg';
 
 const SvgFile = {
   ArrowLeft,
@@ -38,6 +40,8 @@ const SvgFile = {
   FunctionFocus,
   FunctionBlur,
   Loading,
+  ChatPrimary,
+  MessagePrimary,
 };
 
 export {SvgFile};

@@ -17,3 +17,9 @@ export enum EScreenSign {
   SIGN_IN,
   SIGN_UP,
 }
+
+export enum EContactForgot {
+  UNDEFINED,
+  SMS,
+  EMAIL,
+}
