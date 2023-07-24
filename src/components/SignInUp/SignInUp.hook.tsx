@@ -1,11 +1,14 @@
 import {Svgs} from '@assets';
+import {GlobalService} from '@components/GlobalUI';
 import {EScreenSign} from '@constants';
 import {IFormikSign, ILoginSocial, INavigateAuth} from '@interfaces';
-import {AuthStackParamList, ROUTE_AUTH} from '@navigation';
+import {ROUTE_AUTH} from '@navigation';
+import auth from '@react-native-firebase/auth';
 import {useNavigation} from '@react-navigation/native';
-import {setUser} from '@redux';
+import {loginSuccess} from '@redux';
 import {useState} from 'react';
 import {useTranslation} from 'react-i18next';
+import {Alert} from 'react-native';
 import {useDispatch} from 'react-redux';
 
 export const SignInUpHook = (type: EScreenSign) => {
@@ -53,12 +56,50 @@ export const SignInUpHook = (type: EScreenSign) => {
   //   } catch (e) {}
   // };
 
-  const handleSign = (values: IFormikSign) => {
-    console.log('test: ');
+  const handleSign = async (values: IFormikSign) => {
     if (type === EScreenSign.SIGN_IN) {
-      dispatch(setUser({token: 'abc', user: {}}));
+      try {
+        GlobalService.showLoading();
+        await auth().signInWithEmailAndPassword(values.email, values.password);
+        dispatch(loginSuccess());
+      } catch (error) {
+        //@ts-ignore
+        if (error?.code === 'auth/email-already-in-use') {
+          Alert.alert('That email address is already in use!');
+        }
+        //@ts-ignore
+        if (error?.code === 'auth/invalid-email') {
+          Alert.alert('That email address is invalid!');
+        }
+
+        //@ts-ignore
+        if (error?.code === 'auth/user-not-found') {
+          Alert.alert('Email or password is incorrect!');
+        }
+        console.log('error: ', error);
+      } finally {
+        GlobalService.hideLoading();
+      }
     } else {
-      navigation.navigate(ROUTE_AUTH.FILL_PROFILE);
+      try {
+        GlobalService.showLoading();
+        await auth().createUserWithEmailAndPassword(
+          values.email,
+          values.password,
+        );
+        navigation.navigate(ROUTE_AUTH.FILL_PROFILE);
+      } catch (error) {
+        //@ts-ignore
+        if (error?.code === 'auth/email-already-in-use') {
+          Alert.alert('That email address is already in use!');
+        }
+        //@ts-ignore
+        if (error?.code === 'auth/invalid-email') {
+          Alert.alert('That email address is invalid!');
+        }
+      } finally {
+        GlobalService.hideLoading();
+      }
     }
   };
 
@@ -66,7 +107,9 @@ export const SignInUpHook = (type: EScreenSign) => {
     setRememberMe(checked);
   };
 
-  const handleForgot = () => {};
+  const handleForgot = () => {
+    navigation.navigate(ROUTE_AUTH.FORGOT_PASSWORD);
+  };
 
   const handleChangeSign = () => {
     navigation.replace(

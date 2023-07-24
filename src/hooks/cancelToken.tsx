@@ -1,5 +1,5 @@
 import {useEffect} from 'react';
-import axios, {CancelToken} from 'axios';
+import axios, {CancelToken, CancelTokenSource} from 'axios';
 interface FunctionProps {
   cancelToken: CancelToken;
 }
@@ -20,4 +20,19 @@ export const useCancelRequest = (
       callBackCancel?.();
     };
   }, [handleFunction]);
+};
+
+export const useCancelToken = (
+  des?: React.DependencyList | undefined,
+  message?: string,
+  callBackCancel?: () => void,
+): CancelTokenSource => {
+  const axiosCancelToken: CancelTokenSource = axios.CancelToken.source();
+  useEffect(() => {
+    return () => {
+      !!callBackCancel && callBackCancel();
+      axiosCancelToken?.cancel(message);
+    };
+  }, des);
+  return axiosCancelToken;
 };

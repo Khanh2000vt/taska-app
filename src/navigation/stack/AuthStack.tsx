@@ -39,6 +39,10 @@ const AuthStackComponent = memo(() => {
           name={ROUTE_AUTH.FILL_PROFILE}
           component={screens.FillProfile}
         />
+        <AuthStack.Screen
+          name={ROUTE_AUTH.FORGOT_PASSWORD}
+          component={screens.ForgotPassword}
+        />
       </AuthStack.Navigator>
       <StatusBar barStyle="light-content" />
     </>
