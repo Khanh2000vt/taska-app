@@ -1,4 +1,11 @@
-import {FillProfile, Intro, Login, SignInPassword, SignUp} from './auth';
+import {
+  FillProfile,
+  ForgotPassword,
+  Intro,
+  Login,
+  SignInPassword,
+  SignUp,
+} from './auth';
 import {Home} from './main';
 
 const screens = {
@@ -8,5 +15,6 @@ const screens = {
   SignInPassword,
   SignUp,
   FillProfile,
+  ForgotPassword,
 };
 export {screens};
