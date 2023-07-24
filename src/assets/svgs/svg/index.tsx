@@ -16,6 +16,7 @@ import ProfileBold from './profile-bold.svg';
 import ProfileBorder from './profile-border.svg';
 import FunctionFocus from './function-focus.svg';
 import FunctionBlur from './function-blur.svg';
+import Loading from './loading.svg';
 
 const SvgFile = {
   ArrowLeft,
@@ -36,6 +37,7 @@ const SvgFile = {
   ProfileBorder,
   FunctionFocus,
   FunctionBlur,
+  Loading,
 };
 
 export {SvgFile};
