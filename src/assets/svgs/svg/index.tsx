@@ -19,6 +19,8 @@ import FunctionBlur from './function-blur.svg';
 import Loading from './loading.svg';
 import ChatPrimary from './chat-primary.svg';
 import MessagePrimary from './message-primary.svg';
+import Logo from './logo.svg';
+import Notification from './notification.svg';
 
 const SvgFile = {
   ArrowLeft,
@@ -42,6 +44,8 @@ const SvgFile = {
   Loading,
   ChatPrimary,
   MessagePrimary,
+  Logo,
+  Notification,
 };
 
 export {SvgFile};
