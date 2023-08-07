@@ -24,8 +24,8 @@ export const SignInUpHook = (type: EScreenSign) => {
     >();
 
   const initialValues: IFormikSign = {
-    email: '',
-    password: '',
+    email: __DEV__ ? 'khanh0511vt@gmail.com' : '',
+    password: __DEV__ ? 'khanh2000vt@gmail.com' : '',
   };
 
   const [rememberMe, setRememberMe] = useState<boolean>(false);
